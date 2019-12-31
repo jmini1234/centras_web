@@ -5,7 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div id="wrap">
+    <span class="title">Hello!</span>
+    <div class="user">
+        <input type="button" class="btn" onclick=" location.href='users/login'" value="LOGIN"/>
+        <input type="button" class="btn" onclick=" location.href='users/sign_up'" value="SIGNUP"/>
+    </div>
+</div>
   </body>
 </html>

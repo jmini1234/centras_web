@@ -3,15 +3,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var dbConfig = require('./routes/dbConfig');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+const pool = mysql.createPool({
+    host:dbConfig.host,
+    user: dbConfig.user,
+  	password: dbConfig.password,
+  	database: dbConfig.database
+})
+
+app.set('pool',pool)
+
+var indexRouter = require('./routes/index')(app);
+var usersRouter = require('./routes/users')(app);
+
 
 app.use(logger('dev'));
 app.use(express.json());

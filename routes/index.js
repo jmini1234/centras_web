@@ -1,23 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var mysql = require('mysql');
-var dbConfig = require('./dbConfig');
+module.exports = (app) => {
+	var express = require('express');
+	var router = express.Router();
+	var mysql = require('mysql');
 
-var dbOptions = {
-	user: dbConfig.host,
-	password: dbConfig.password,
-	database: dbConfig.database
-};
-
-var conn = mysql.createConnection(dbOptions);
+// var conn = mysql.createConnection(dbOptions);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-	res.send('<a href="/users/login">login</a>');
-});
+	router.get('/', function(req, res, next) {
+		res.render("index",{title:"jminii_port_page"});
 
-//other js file can use db (conn)
-module.exports =	{
-	conn: conn
+		// var query = conn.query('select * from user',function(err,rows){
+		// 			console.log(rows);
+		// 			res.json(rows);
+		// 	});
+	});
+		return router
+	//other js file can use db (conn)
 }
-module.exports = router;
+// module.exports = router;
