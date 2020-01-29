@@ -4,6 +4,7 @@ module.exports = (app) => {
   var mysql = require('mysql');
   var dbOptions = require('./index.js');
   var crypto = require('crypto');
+  
 
 
   /* GET users listing. */
@@ -17,81 +18,78 @@ module.exports = (app) => {
      res.render('users/sign_up');
   });
 
-  router.post('/sign_up', async function (req,res) {
-    let body = req.body;
+  router.post('/sign_up', function (req,res) {
 
-    let inputPassword = body.password;
+    //pw 단방향 암호화 저장
+
+    let inputPassword = req.body.password;
     let salt = Math.round((new Date().valueOf() * Math.random())) + "";
     let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
 
-    let user = {
-      "ID":req.body.userid,
-      "Password":hashPassword,
-      "Name":req.body.username,
-      "Email":req.body.useremail,
-      "Phone":req.body.userphone,
-      "Github":req.body.usergithub,
-      "Blog":req.body.userblog,
-      "Salt":salt
-    }
 
-    conn.query('INSERT INTO user SET ?',user,function (err,results,fields) {
-      if (err) {
-             console.log("error ocurred", err);
-             res.send({
-                 "code" : 400,
-                 "failed": "error ocurred"
-             })
-         } else {
-             console.log('The solution is: ', results);
-             res.send({
-                 "code": 200,
-                 "success": "user registered sucessfully"
-             });
-         }
-    })
+    conn.query('SELECT * FROM User WHERE id = ?',[req.body.id],function (err,results) {
+      if(results[0])
+        res.send('duplicate id');
+      else {
+        let user = {
+          "id":req.body.id,
+          "password":hashPassword,
+          "nickname":req.body.nickname,
+          "email":req.body.email,
+          "salt" : salt
+        };
 
+        conn.query('INSERT INTO User SET ?',user,function (err,results,fields) {
+          if (err) {
+                 console.log("error ocurred", err);
+                 res.send({
+                     "code" : 400,
+                     "failed": "error ocurred"
+                 })
+             } else {
+                 // console.log('The solution is: ', results);
+                 res.send({
+                     "code": 200,
+                     "success": "user registered sucessfully"
+                 });
+             }
+        });
+
+      }
+    });
   });
+
 
 
   router.get('/login', function(req, res, next) {
     res.render('users/login');
   });
 
-  router.post('/login', async function (req,res) {
+  router.post('/login', function (req,res) {
     let body = req.body;
 
-    let inputPassword = body.password;
-    let salt = Math.round((new Date().valueOf() * Math.random())) + "";
-    let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
+    let id = body.id;
+    let password = body.password;
 
+    conn.query('SELECT * FROM User WHERE id = ?',[id],function (err,results) {
+      if(!results[0])
+        res.send('check your id');
+      else {
+        let user = results[0];
+        let dbPassword = user.password;
+        let salt = user.salt;
+        let hashPassword = crypto.createHash("sha512").update(password + salt).digest("hex");
 
-    let user = {
-      "ID":req.body.userid,
-      "Password":hashPassword,
-      "Name":req.body.username,
-      "Email":req.body.useremail,
-      "Phone":req.body.userphone,
-      "Github":req.body.usergithub,
-      "Blog":req.body.userblog,
-      "Salt":salt
-    }
+        if(dbPassword == hashPassword){
+          res.send('login success');
+        }
+        else{
+          res.send('login fail')
+        }
+      }
 
-    conn.query('INSERT INTO user SET ? ',user,function (err,results,fields) {
-      if (error) {
-             console.log("error ocurred", error);
-             res.send({
-                 "code" : 400,
-                 "failed": "error ocurred"
-             })
-         } else {
-             console.log('The solution is: ', results);
-             res.send({
-                 "code": 200,
-                 "success": "user registered sucessfully"
-             });
-         }
     })
+
 
   });
 

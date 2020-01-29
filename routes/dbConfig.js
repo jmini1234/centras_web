@@ -1,8 +1,8 @@
 let dbConfig = {
-  host:'localhost',
-  user: 'root',
-  password: 'sjm1771033',
-  database: 'dev_port'
+  host:'13.209.234.251',
+  user: 'jonghyun',
+  password: '0000',
+  database: 'test'
 }
 
 module.exports = dbConfig;
