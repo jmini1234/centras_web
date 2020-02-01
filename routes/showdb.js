@@ -3,7 +3,7 @@ var express    = require('express');
 var mysql      = require('mysql');
 var dbconfig   = require('./config/database.js');
 var connection = mysql.createConnection(dbconfig);
-
+/////////////branch 확인용
 var app = express();
 
 // configuration ===============================================================
