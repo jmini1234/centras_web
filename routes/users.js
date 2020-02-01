@@ -4,8 +4,9 @@ module.exports = (app) => {
   var mysql = require('mysql');
   var dbOptions = require('./index.js');
   var crypto = require('crypto');
-  
-
+  var moment = require('moment');
+  require('moment-timezone');
+  moment.tz.setDefault("Asia/Seoul");
 
   /* GET users listing. */
 
@@ -22,24 +23,28 @@ module.exports = (app) => {
 
     //pw 단방향 암호화 저장
 
-    let inputPassword = req.body.password;
+    let inputPassword = req.body.pw;
     let salt = Math.round((new Date().valueOf() * Math.random())) + "";
     let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
 
 
-    conn.query('SELECT * FROM User WHERE id = ?',[req.body.id],function (err,results) {
+    conn.query('SELECT * FROM user WHERE id = ?',[req.body.id],function (err,results) {
       if(results[0])
         res.send('duplicate id');
       else {
+        var date = moment().format('YYYY-MM-DD HH:mm:ss');
+
         let user = {
           "id":req.body.id,
-          "password":hashPassword,
+          "pw":hashPassword,
           "nickname":req.body.nickname,
           "email":req.body.email,
-          "salt" : salt
+          "salt" : salt,
+          "regist_date" : date
+          // "regist_date" :
         };
 
-        conn.query('INSERT INTO User SET ?',user,function (err,results,fields) {
+        conn.query('INSERT INTO user SET ?',user,function (err,results,fields) {
           if (err) {
                  console.log("error ocurred", err);
                  res.send({
@@ -54,7 +59,6 @@ module.exports = (app) => {
                  });
              }
         });
-
       }
     });
   });
@@ -69,16 +73,16 @@ module.exports = (app) => {
     let body = req.body;
 
     let id = body.id;
-    let password = body.password;
+    let pw = body.pw;
 
-    conn.query('SELECT * FROM User WHERE id = ?',[id],function (err,results) {
+    conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
       if(!results[0])
         res.send('check your id');
       else {
         let user = results[0];
-        let dbPassword = user.password;
+        let dbPassword = user.pw;
         let salt = user.salt;
-        let hashPassword = crypto.createHash("sha512").update(password + salt).digest("hex");
+        let hashPassword = crypto.createHash("sha512").update(pw + salt).digest("hex");
 
         if(dbPassword == hashPassword){
           res.send('login success');
@@ -88,7 +92,7 @@ module.exports = (app) => {
         }
       }
 
-    })
+    });
 
 
   });
