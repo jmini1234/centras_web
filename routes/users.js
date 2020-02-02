@@ -41,7 +41,6 @@ module.exports = (app) => {
           "email":req.body.email,
           "salt" : salt,
           "regist_date" : date
-          // "regist_date" :
         };
 
         conn.query('INSERT INTO user SET ?',user,function (err,results,fields) {
