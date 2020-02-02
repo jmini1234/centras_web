@@ -7,6 +7,10 @@ module.exports = (app) => {
   var moment = require('moment');
   require('moment-timezone');
   moment.tz.setDefault("Asia/Seoul");
+  require("dotenv").config();
+  const jwtSecret = process.env.JWT_SECRET;
+  const jwt = require('jsonwebtoken');
+  var isLogin = require('./token.js');
 
   /* GET users listing. */
 
@@ -26,7 +30,6 @@ module.exports = (app) => {
     let inputPassword = req.body.pw;
     let salt = Math.round((new Date().valueOf() * Math.random())) + "";
     let hashPassword = crypto.createHash("sha512").update(inputPassword + salt).digest("hex");
-
 
     conn.query('SELECT * FROM user WHERE id = ?',[req.body.id],function (err,results) {
       if(results[0])
@@ -63,7 +66,6 @@ module.exports = (app) => {
   });
 
 
-
   router.get('/login', function(req, res, next) {
     res.render('users/login');
   });
@@ -84,17 +86,24 @@ module.exports = (app) => {
         let hashPassword = crypto.createHash("sha512").update(pw + salt).digest("hex");
 
         if(dbPassword == hashPassword){
-          res.send('login success');
+          let payload = {
+            id : id
+          };
+          let option = {expiresIn : '1h'};
+          token = jwt.sign(payload,jwtSecret,option);
+          res.json({'user':user.id,'token':token});
         }
         else{
           res.send('login fail')
         }
       }
-
     });
-
-
   });
+
+  router.post('/show',isLogin,function (req,res) {
+    let user = req.decoded.id;
+    res.send(user);
+  })
 
   return router
 }
