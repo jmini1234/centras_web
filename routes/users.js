@@ -15,7 +15,6 @@ module.exports = (app) => {
   /* GET users listing. */
 
   // url: user/login
-  // user와 관련된 내용만 한 파일에 존재
 
   const conn = app.get('pool')
 
@@ -54,7 +53,6 @@ module.exports = (app) => {
                      "failed": "error ocurred"
                  })
              } else {
-                 // console.log('The solution is: ', results);
                  res.send({
                      "code": 200,
                      "success": "user registered sucessfully"
@@ -86,12 +84,16 @@ module.exports = (app) => {
         let hashPassword = crypto.createHash("sha512").update(pw + salt).digest("hex");
 
         if(dbPassword == hashPassword){
+          var date = moment().format('YYYY-MM-DD HH:mm:ss');
+          conn.query('UPDATE user SET login_date=? WHERE id = ?',[date,user.id]);
+          //token 발행
           let payload = {
+            idx : user.idx,
             id : id
           };
           let option = {expiresIn : '1h'};
           token = jwt.sign(payload,jwtSecret,option);
-          res.json({'user':user.id,'token':token});
+          res.json({'user':user,'token':token});
         }
         else{
           res.send('login fail')
@@ -100,10 +102,27 @@ module.exports = (app) => {
     });
   });
 
-  router.post('/show',isLogin,function (req,res) {
-    let user = req.decoded.id;
-    res.send(user);
-  })
+  router.put('/update',isLogin,function (req,res) {
+    let user_idx = req.decoded.idx;
+    let id = req.body.id;
+    let nickname = req.body.nickname;
+    let email = req.body.email;
+
+    conn.query('UPDATE user SET id=?, nickname=?, email=? WHERE idx = ?',[id,nickname,email,user_idx],function (err,results) {
+      if (err) {
+             console.log("error ocurred", err);
+             res.send({
+                 "code" : 400,
+                 "failed": "error ocurred"
+             })
+         } else {
+             res.send({
+                 "code": 200,
+                 "success": "user modified sucessfully"
+             });
+         }
+  });
+});
 
   return router
 }
