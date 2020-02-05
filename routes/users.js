@@ -69,10 +69,9 @@ module.exports = (app) => {
   });
 
   router.post('/login', function (req,res) {
-    let body = req.body;
 
-    let id = body.id;
-    let pw = body.pw;
+    let id = req.body.id;
+    let inputPassword = req.body.pw;
 
     conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
       if(!results[0])
@@ -80,8 +79,9 @@ module.exports = (app) => {
       else {
         let user = results[0];
         let dbPassword = user.pw;
-        let salt = user.salt;
-        let hashPassword = crypto.createHash("sha512").update(pw + salt).digest("hex");
+        console.log(inputPassword);
+        let hashPassword = crypto.createHash("sha512").update(inputPassword + user.salt).digest("hex");
+        console.log(hashPassword);
 
         if(dbPassword == hashPassword){
           var date = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -89,7 +89,8 @@ module.exports = (app) => {
           //token 발행
           let payload = {
             idx : user.idx,
-            id : id
+            id : id,
+            salt : user.salt
           };
           let option = {expiresIn : '1h'};
           token = jwt.sign(payload,jwtSecret,option);
@@ -105,24 +106,32 @@ module.exports = (app) => {
   router.put('/update',isLogin,function (req,res) {
     let user_idx = req.decoded.idx;
     let id = req.body.id;
+    let inputPassword = req.body.pw;
     let nickname = req.body.nickname;
     let email = req.body.email;
+    let hashPassword = crypto.createHash("sha512").update(inputPassword + req.decoded.salt).digest("hex");
+    console.log(hashPassword);
 
-    conn.query('UPDATE user SET id=?, nickname=?, email=? WHERE idx = ?',[id,nickname,email,user_idx],function (err,results) {
-      if (err) {
-             console.log("error ocurred", err);
-             res.send({
-                 "code" : 400,
-                 "failed": "error ocurred"
-             })
-         } else {
-             res.send({
-                 "code": 200,
-                 "success": "user modified sucessfully"
-             });
-         }
+    conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
+      if(results[0])
+        res.send('duplicate id');
+      else{
+        conn.query('UPDATE user SET id=?, pw=?, nickname=?, email=? WHERE idx = ?',[id,hashPassword,nickname,email,user_idx],function (err,results) {
+          if (err) {
+                 console.log("error ocurred", err);
+                 res.send({
+                     "code" : 400,
+                     "failed": "error ocurred"
+                 })
+             } else {
+                 res.send({
+                     "code": 200,
+                     "success": "user modified sucessfully"
+                 });
+             }
+        });
+      }
   });
 });
-
-  return router
+  return router;
 }
