@@ -24,6 +24,7 @@ app.set('pool',pool)
 
 var indexRouter = require('./routes/index')(app);
 var usersRouter = require('./routes/users')(app);
+var nurseyRouter = require('./routes/nursery')(app);
 
 
 app.use(logger('dev'));
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/nursery',nurseyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
