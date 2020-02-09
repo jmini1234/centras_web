@@ -55,7 +55,7 @@ module.exports = (app) => {
                  })
              } else {
                  res.status(200).send({
-                     "message": "user registered sucessfully"
+                     "message": "회원가입이 성공적으로 완료되었습니다."
                  });
              }
         });
@@ -75,7 +75,9 @@ module.exports = (app) => {
 
     conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
       if(!results[0])
-        res.send('check your id');
+        res.status(400).send({
+          "message" : '중복된 아이디입니다.'
+        });
       else {
         let user = results[0];
         let dbPassword = user.pw;
@@ -92,7 +94,7 @@ module.exports = (app) => {
           };
           let option = {expiresIn : '1h'};
           token = jwt.sign(payload,jwtSecret,option);
-          res.status(200).send({'user':user,'token':token});
+          res.status(200).send({'message':'로그인 성공','user':user,'token':token});
         }
         else{
           res.status(400).send({"message":'로그인 실패'});
@@ -117,11 +119,11 @@ module.exports = (app) => {
           if (err) {
                  console.log("error ocurred", err);
                  res.send.status(400)({
-                     "failed": "error ocurred"
-                 })
+                     "message": "error ocurred"
+                 });
              } else {
                  res.status(200).send({
-                     "success": "user modified sucessfully"
+                    "message": "회원정보 수정이 완료되었습니다."
                  });
              }
         });
