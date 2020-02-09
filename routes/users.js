@@ -79,9 +79,7 @@ module.exports = (app) => {
       else {
         let user = results[0];
         let dbPassword = user.pw;
-        console.log(inputPassword);
         let hashPassword = crypto.createHash("sha512").update(inputPassword + user.salt).digest("hex");
-        console.log(hashPassword);
 
         if(dbPassword == hashPassword){
           var date = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -110,7 +108,6 @@ module.exports = (app) => {
     let nickname = req.body.nickname;
     let email = req.body.email;
     let hashPassword = crypto.createHash("sha512").update(inputPassword + req.decoded.salt).digest("hex");
-    console.log(hashPassword);
 
     conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
       if(results[0])
