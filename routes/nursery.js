@@ -15,12 +15,12 @@ module.exports = (app) => {
             if(err){
                 console.log("error ocurred", err);
                 res.status(400).send({
-                    "failed": "error ocurred"
+                    "message": "error ocurred"
                 });    
             }
             else{
                 res.status(200).send({
-                    "msg":"양식장 등록 성공"
+                    "message":"양식장 등록 성공"
                 });
             }
 
@@ -36,12 +36,12 @@ module.exports = (app) => {
         conn.query('UPDATE nursery SET nursery_id=? WHERE idx= ?',[new_nursery_id,idx],function(err,results,next){
             if(err){
                 res.status(400).send({
-                    "failed": "error ocurred"
+                    "message": "error ocurred"
                 });
             }
             else{
                 res.status(200).send({
-                    "msg" : "양식장 업데이트 성공"
+                    "message" : "양식장 업데이트 성공"
                 })
             }
         })
@@ -54,24 +54,24 @@ module.exports = (app) => {
         conn.query('SELECT * FROM nursery WHERE idx=?',[idx],function(err,results){
             if(!results[0]){
                 res.status(400).send({
-                    "failed": "양식장 없음"
+                    "message": "해당 양식장 없음"
                 });
             }
             else if(results[0].user_idx==user_idx){
                 conn.query('DELETE FROM nursery WHERE idx= ?',[idx],function(err,results,next){
                     if(err){
                         res.status(400).send({
-                            "msg" : "delete error"
+                            "message" : "delete error"
                         });
                     }
                     res.status(200).send({
-                        "msg" : "양식장 삭제 성공"
+                        "message" : "양식장 삭제 성공"
                     });
                 });
             }
             else{
                 res.status(403).send({
-                    "msg": "삭제 권한 없음"
+                    "message": "삭제 권한 없음"
                  });
             }
         });
@@ -85,12 +85,11 @@ module.exports = (app) => {
         conn.query('SELECT * FROM nursery WHERE user_idx=?',[user_idx],function(err,results){
             if(err){
                 res.status(400).send({
-                    "failed": "error ocurred"
+                    "message": "error ocurred"
                 });
             }
             else{
                 res.status(200).send({
-                    "code" : 200,
                     "data" : results
                 });            
             }
@@ -125,7 +124,7 @@ module.exports = (app) => {
             }
             else{
                 res.status(200).send({
-                    "temperature" : results
+                    "size" : results
                 });
             }
         });
@@ -142,7 +141,7 @@ module.exports = (app) => {
             }
             else{
                 res.status(200).send({
-                    "temperature" : results
+                    "streaming" : results
                 });
             }
         });
