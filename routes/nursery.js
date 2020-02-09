@@ -14,13 +14,12 @@ module.exports = (app) => {
         conn.query('INSERT INTO nursery SET ?',nursery,function(err,results){
             if(err){
                 console.log("error ocurred", err);
-                res.send({
-                    "code" : '400',
+                res.status(400).send({
                     "failed": "error ocurred"
                 });    
             }
             else{
-                res.send({
+                res.status(200).send({
                     "msg":"양식장 등록 성공"
                 });
             }
@@ -36,14 +35,12 @@ module.exports = (app) => {
 
         conn.query('UPDATE nursery SET nursery_id=? WHERE idx= ?',[new_nursery_id,idx],function(err,results,next){
             if(err){
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "failed": "error ocurred"
                 });
             }
             else{
-                res.send({
-                    "code" : 200,
+                res.status(200).send({
                     "msg" : "양식장 업데이트 성공"
                 })
             }
@@ -56,28 +53,24 @@ module.exports = (app) => {
 
         conn.query('SELECT * FROM nursery WHERE idx=?',[idx],function(err,results){
             if(!results[0]){
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "failed": "양식장 없음"
                 });
             }
             else if(results[0].user_idx==user_idx){
                 conn.query('DELETE FROM nursery WHERE idx= ?',[idx],function(err,results,next){
                     if(err){
-                        res.send({
-                            "code" : 400,
+                        res.status(400).send({
                             "msg" : "delete error"
                         });
                     }
-                    res.send({
-                        "code" : 200,
+                    res.status(200).send({
                         "msg" : "양식장 삭제 성공"
                     });
                 });
             }
             else{
-                res.send({
-                    "code" : 400,
+                res.status(403).send({
                     "msg": "삭제 권한 없음"
                  });
             }
@@ -91,14 +84,12 @@ module.exports = (app) => {
         let user_idx = req.decoded.idx;
         conn.query('SELECT * FROM nursery WHERE user_idx=?',[user_idx],function(err,results){
             if(err){
-                console.log("error ocurred", err);
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "failed": "error ocurred"
                 });
             }
             else{
-                res.send({
+                res.status(200).send({
                     "code" : 200,
                     "data" : results
                 });            
@@ -112,14 +103,12 @@ module.exports = (app) => {
         let user_idx = req.decoded.idx;
         conn.query('SELECT * FROM temperature WHERE nursery_idx =?',[idx],function(err,results,next){
             if(err) {
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "error" : err
                 });
             }
             else{
-                res.send({
-                    "code" : 200,
+                res.status(200).send({
                     "temperature" : results
                 });
             }
@@ -130,14 +119,12 @@ module.exports = (app) => {
         var idx = req.params.idx;
         conn.query('SELECT * FROM size WHERE nursery_idx =?',[idx],function(err,results,next){
             if(err) {
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "error" : err
                 });
             }
             else{
-                res.send({
-                    "code" : 200,
+                res.status(200).send({
                     "temperature" : results
                 });
             }
@@ -149,14 +136,12 @@ module.exports = (app) => {
         var idx = req.params.idx;
         conn.query('SELECT * FROM streaming WHERE nursery_idx =?',[idx],function(err,results,next){
             if(err) {
-                res.send({
-                    "code" : 400,
+                res.status(400).send({
                     "error" : err
                 });
             }
             else{
-                res.send({
-                    "code" : 200,
+                res.status(200).send({
                     "temperature" : results
                 });
             }

@@ -32,7 +32,9 @@ module.exports = (app) => {
 
     conn.query('SELECT * FROM user WHERE id = ?',[req.body.id],function (err,results) {
       if(results[0])
-        res.send('duplicate id');
+        res.status(400).send({
+          "message" : '중복된 아이디 입니다.'
+        });
       else {
         var date = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -48,14 +50,12 @@ module.exports = (app) => {
         conn.query('INSERT INTO user SET ?',user,function (err,results,fields) {
           if (err) {
                  console.log("error ocurred", err);
-                 res.send({
-                     "code" : 400,
-                     "failed": "error ocurred"
+                 res.status(400).send({
+                     "message": "error ocurred"
                  })
              } else {
-                 res.send({
-                     "code": 200,
-                     "success": "user registered sucessfully"
+                 res.status(200).send({
+                     "message": "user registered sucessfully"
                  });
              }
         });
@@ -92,10 +92,10 @@ module.exports = (app) => {
           };
           let option = {expiresIn : '1h'};
           token = jwt.sign(payload,jwtSecret,option);
-          res.json({'user':user,'token':token});
+          res.status(200).send({'user':user,'token':token});
         }
         else{
-          res.send('login fail')
+          res.status(400).send({"message":'로그인 실패'});
         }
       }
     });
@@ -116,13 +116,11 @@ module.exports = (app) => {
         conn.query('UPDATE user SET id=?, pw=?, nickname=?, email=? WHERE idx = ?',[id,hashPassword,nickname,email,user_idx],function (err,results) {
           if (err) {
                  console.log("error ocurred", err);
-                 res.send({
-                     "code" : 400,
+                 res.send.status(400)({
                      "failed": "error ocurred"
                  })
              } else {
-                 res.send({
-                     "code": 200,
+                 res.status(200).send({
                      "success": "user modified sucessfully"
                  });
              }

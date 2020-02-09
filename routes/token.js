@@ -5,13 +5,12 @@ function isLogin(req,res,next) {
   const token = req.headers['x-access-token'];
   if(!token) {
     return res.status(403).json({
-      success : false,
-      message : 'no token'
+      message : '토큰 값을 입력해주세요'
     });
   }
 
   jwt.verify(token,jwtSecret,function(err,decoded){
-    if(err) return res.json('token Invalid');
+    if(err) return res.status(400).json('다시 로그인 해주세요');
     else{
       req.decoded = decoded;
       next();
