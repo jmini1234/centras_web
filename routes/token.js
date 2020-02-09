@@ -11,7 +11,7 @@ function isLogin(req,res,next) {
   }
 
   jwt.verify(token,jwtSecret,function(err,decoded){
-    if(err) return res.json('Invalid');
+    if(err) return res.json('token Invalid');
     else{
       req.decoded = decoded;
       next();
