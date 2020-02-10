@@ -1,5 +1,5 @@
 const jwtSecret = process.env.JWT_SECRET;
-const jwt = require('sendwebtoken');
+const jwt = require('jsonwebtoken');
 
 function isLogin(req,res,next) {
   const token = req.headers['x-access-token'];

@@ -6,7 +6,7 @@ module.exports = (app) => {
     var isLogin = require('./token.js');
     const conn = app.get('pool');
 
-    router.post('/register',isLogin,function(req,res,next){
+    router.post('/',isLogin,function(req,res,next){
         let nursery = {
             'user_idx' : req.decoded.idx,
             'nursery_id' : req.body.nursery_id
@@ -28,26 +28,43 @@ module.exports = (app) => {
     });
 
     //양식장 이름 수정 
-    router.put('/update/:idx',isLogin,function(req,res,next){
+    router.put('/:idx',isLogin,function(req,res,next){
+        
         var idx = req.params.idx;
         let user_idx = req.decoded.idx;
         var new_nursery_id = req.body.nursery_id;
 
-        conn.query('UPDATE nursery SET nursery_id=? WHERE idx= ?',[new_nursery_id,idx],function(err,results,next){
-            if(err){
+        conn.query('SELECT * FROM nursery WHERE idx=?',[idx],function(err,results){
+            if(!results[0]){
                 res.status(400).send({
-                    "message": "error ocurred"
+                    "message": "해당 양식장 없음"
+                });
+            }
+            else if(results[0].user_idx==user_idx){
+                conn.query('UPDATE nursery SET nursery_id=? WHERE idx= ?',[new_nursery_id,idx],function(err,results,next){
+                    if(err){
+                        res.status(400).send({
+                            "message": "error ocurred"
+                        });
+                    }
+                    else{
+                        res.status(200).send({
+                            "message" : "양식장 업데이트 성공"
+                        })
+                    }
                 });
             }
             else{
-                res.status(200).send({
-                    "message" : "양식장 업데이트 성공"
-                })
+                res.status(403).send({
+                    "message": "삭제 권한 없음"
+                 });
             }
-        })
+        });
+
     });
 
-    router.delete('/delete/:idx',isLogin,function(req,res,next){
+    //양식장 삭제
+    router.delete('/:idx',isLogin,function(req,res,next){
         var idx = req.params.idx;
         let user_idx = req.decoded.idx;
 
