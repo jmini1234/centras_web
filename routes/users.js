@@ -17,11 +17,7 @@ module.exports = (app) => {
   // url: user/login
 
   const conn = app.get('pool')
-
-  router.get('/sign_up', function(req, res, next) {
-     res.render('users/sign_up');
-  });
-
+  
   router.post('/sign_up', function (req,res) {
 
     //pw 단방향 암호화 저장
@@ -103,7 +99,7 @@ module.exports = (app) => {
     });
   });
 
-  router.put('/update',isLogin,function (req,res) {
+  router.put('/',isLogin,function (req,res) {
     let user_idx = req.decoded.idx;
     let id = req.body.id;
     let inputPassword = req.body.pw;
