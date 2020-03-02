@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import fish from 'components/img/fish.png'
 import 'components/Header/Header.css'
 
+
 class Header extends Component{
     render() {
         return (
