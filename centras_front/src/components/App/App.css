@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.main-content{
+  position:absolute; width:800px; height:400px; top:50%; left:50%; margin-top:-200px; margin-left:-400px;
+  color:white;
+}
+
+.main-content-title{
+  font-size: 66px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-content-content{
+  font-size: 24px;
+  width: 500px;
+  margin-left: 150px;
+}
+
+img.main_bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
