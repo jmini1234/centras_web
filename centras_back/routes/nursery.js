@@ -1,10 +1,15 @@
 module.exports = (app) => {
     var express = require('express');
     var router = express.Router();
-    var mysql = require('mysql');
-    var dbOptions = require('./index.js');
     var isLogin = require('./token.js');
     const conn = app.get('pool');
+
+    // isLogin 으로 모두 token 필요 
+
+
+  /*
+    양식장 등록  
+  */
 
     router.post('/',isLogin,function(req,res,next){
         let nursery = {
@@ -27,7 +32,11 @@ module.exports = (app) => {
         });
     });
 
-    //양식장 이름 수정 
+
+  /*
+    양식장 이름 수정  
+  */
+
     router.put('/:idx',isLogin,function(req,res,next){
         
         var idx = req.params.idx;
@@ -63,7 +72,10 @@ module.exports = (app) => {
 
     });
 
-    //양식장 삭제
+  /*
+    양식장 삭제  
+  */
+
     router.delete('/:idx',isLogin,function(req,res,next){
         var idx = req.params.idx;
         let user_idx = req.decoded.idx;
@@ -95,7 +107,9 @@ module.exports = (app) => {
     });
 
 
-    //user의 양식장 list 확인 
+  /*
+    양식장 list 조회
+  */
 
     router.get('/list', isLogin, function(req, res, next) {
         let user_idx = req.decoded.idx;
@@ -114,6 +128,10 @@ module.exports = (app) => {
         });
     });
 
+  /*
+    양식장 수온 조회
+  */
+    
     router.get('/:idx/temperature',isLogin,function(req,res,next){
         var idx = req.params.idx;
         let user_idx = req.decoded.idx;
@@ -131,6 +149,11 @@ module.exports = (app) => {
         });
     });
 
+
+  /*
+    양식장 물고기 사이즈 조회
+  */
+
     router.get('/:idx/size',isLogin,function(req,res,next){
         var idx = req.params.idx;
         conn.query('SELECT * FROM size WHERE nursery_idx =?',[idx],function(err,results,next){
@@ -147,6 +170,10 @@ module.exports = (app) => {
         });
   
     });
+
+  /*
+    양식장 스트리밍 ip 주소 조회
+  */
 
     router.get('/:idx/streaming',isLogin,function(req,res,next){
         var idx = req.params.idx;
