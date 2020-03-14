@@ -24,11 +24,26 @@
 
 - **사용 프레임 워크** : Node.js , Express Engine 
 
+
   ```js
   // 서버 실행 
   $ npm start
   ```
+  
+```js
+  // routes/dbConfig.js
+  
+  let dbConfig = {
+  host:'Your host name',
+  user :'Your user name',
+  port : 3306,
+  password: 'Your password',
+  database: 'Your database'
+}
 
+module.exports = dbConfig;
+
+```
 - **REST API**
 
   - EndPoint 및 API DOCS  :  [Wiki에서 자세히보기](<https://github.com/jmini1234/centras_web/wiki>)
