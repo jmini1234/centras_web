@@ -1,0 +1,58 @@
+.signup-form{
+    position: absolute;
+    width: 1000px;
+    height: 800px;
+    top: 80%;
+    left: 53%;
+    margin-top: -100px;
+    margin-left: -400px;
+}
+
+.signup-field{
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.signup-field span{
+    font-size: 24px;
+    width: 100px;
+    height: 70px;
+    line-height: 70px;
+    margin-right: 30px;
+    font-weight: bold;
+}
+
+#signup_inputID, #signup_inputPW, #signup_inputEmail, #signup_inputNickname {	
+    background: url("../img/edit-pencil@2x.png") no-repeat right 10px;
+    background-position-y: 30%;
+    font-family: SpoqaHanSans;
+    font-size: 26px;
+    width: 500px;
+    border-bottom: 2px solid #868e96;
+}
+
+.header-top{
+    border-bottom: 2px solid #868e96;
+    height: 140px
+}
+
+#signup_header_title{
+    margin: 0;
+    font-size: 40px;
+    margin-left: 280px;
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+.signup-btn{
+    background-color: cornflowerblue !important;
+    border-color: cornflowerblue !important;
+    margin-left: 260px;
+    width: 180px;
+    height: 60px;
+    margin-top: 50px;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5%
+}
