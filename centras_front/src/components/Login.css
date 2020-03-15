@@ -1,0 +1,90 @@
+/* body{
+    background-image: none !important;
+} */
+
+.login-form{
+    margin-left: 180px;
+    margin-top: 200px;
+}
+
+.login-main{
+    position: absolute;
+    width: 1000px;
+    height: 800px;
+    top: 110%;
+    left: 50%;
+    margin-top: -500px;
+    margin-left: -400px;
+}
+
+
+#inputID, #inputPW{	
+    background: url("../img/edit-pencil@2x.png") no-repeat right 10px;
+    background-position-y: 30%;
+    font-family: SpoqaHanSans;
+    font-size: 26px;
+    width: 500px;
+    border-bottom: 2px solid #868e96;
+}
+
+#inputPW{
+    margin-top: 40px;
+}
+
+
+input:focus{
+    outline: none;
+}
+ 
+
+.form-control, #agreement {
+    margin-bottom: 1.4992503748126vh;
+    font-size: 28px;
+    line-height: 180%;
+    opacity: 100%;
+    border: none !important;
+    width: 450px;
+}
+
+
+
+.find, .login-footer{
+    color: #868e96;
+    display: flex;
+    font-size: 22px;
+}
+
+.find{
+    margin-top: 40px;
+    margin-left: 100px;
+    width: 300px;
+    justify-content: space-around;
+}
+.login-footer{
+    margin-top: 40px;
+    margin-left: 65px;
+    width: 500px;
+}
+.signup_link{
+    color: cornflowerblue;
+    margin-left: 10px;
+}
+
+.login-title{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: cornflowerblue !important;
+    border-color: cornflowerblue !important;
+    margin-left: 180px;
+    width: 150px;
+    height: 50px;
+    margin-top: 30px;
+    color: white;
+    font-size: 20px;
+    border : none;
+    border-radius: 8%;
+
+}
