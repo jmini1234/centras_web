@@ -39,16 +39,13 @@ class Size extends Component {
 
         this.setState({
             board : e.target.value
-            
         });
+
 
     }
     
     render(){
         const { board } = this.state;
-        
-        console.log("ccc");
-        console.log(board);
         const { board1 } = this.state;
         const { board2 } = this.state;
         return(

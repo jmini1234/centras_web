@@ -11,7 +11,7 @@ const My = () => (
         <h2>내 양식장</h2>
         <ul>
             <li>
-                <Link to='/my/temp'>수온</Link>        
+                <Link to='/my/mytemp'>수온</Link>        
             </li>
             <li>
                 <Link to='/my/size'>크기</Link>

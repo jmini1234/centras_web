@@ -37,13 +37,22 @@ class Login extends Component{
         console.log(login_info.body);
         fetch("http://localhost:3001/users/login", login_info)
         .then(response => { 
-            console.log(response.json())
-            if(response.status == 400){
-                alert("로그인 실패")
-            }
-            else{
-                alert("로그인 성공")
-            }
+            console.log(response);
+            response.json().then(
+                result => {
+                    console.log(result);
+                    if(response.status == 400){
+                        alert("로그인 실패")
+                    }
+                    else{
+                        alert("로그인 성공")
+                        localStorage.setItem("AUTHORIZATION", result.token);
+                        window.history.back();
+                    }
+                }
+            )
+
+            
         })
         .catch(error => {
             console.log(error.response)
