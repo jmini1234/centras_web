@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Header from '../Layout/Header';
 const API_KEY = "e8b88e142e87e9719fdc7aec27dbaa87";
 
 class Temp extends Component {

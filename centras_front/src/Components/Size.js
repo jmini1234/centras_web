@@ -1,63 +1,61 @@
 import React, {Component} from 'react';
 import My from './My';
+import Header from '../Layout/Header';
 
+// {board1.map(row =>(<BoardItem key={row.date} row={row} />))} 
 class Size extends Component {
     
     constructor(props) {
         super(props);
+        this.state = {
+            nursery_list : [],
+        };
         this.handleChange = this.handleChange.bind(this);
     }
-    
-    state = { 
-        board : 1 ,
-        board1: [ 
-            { 
-                date: '3/1', 
-                small: 10, 
-                medium: 20, 
-                large: 30
-            }, 
-            { 
-                date: '3/2', 
-                small: 5, 
-                medium: 30, 
-                large: 40
-            } 
-        ],
-
-        board2: [
-            { 
-                date: 3/1, 
-                small: 10, 
-                medium: 20, 
-                large: 30
-            }
-        ]
+    componentWillMount(){
+        const headers = {
+            "x-access-token": localStorage.getItem("AUTHORIZATION"),
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+        var Idx;
+        fetch("http://localhost:3001/nursery/list" , { headers })
+        .then(res => res.json())
+        .then(result => {
+            this.setState({nursery_list: result.data})
+            Idx = result.data[0].idx;
+            }  
+        );
+        console.log("aahhhhhhhhhhhhhhhh" + Idx);
+        fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
+        .then(res => res.json())
+        .then(result => console.log(result));
     }
-    
+
     handleChange(e){
 
-        this.setState({
-            board : e.target.value
-        });
-
-
+        const headers = {
+            "x-access-token": localStorage.getItem("AUTHORIZATION"),
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+        console.log(e.target.value);
+        var Idx = e.target.value;
+        fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
+        .then(res => res.json())
+        .then(result => console.log(result));
     }
     
     render(){
-        const { board } = this.state;
-        const { board1 } = this.state;
-        const { board2 } = this.state;
         return(
             
             <div>
                 <My />
                 <h1>크기</h1>
-                <select value={this.state.value} onChange={this.handleChange}>
-                <option selected value="1">1번 양식장</option>
-                <option value="2">2번 양식장</option>
-                <option value="3">3번 양식장</option>
-                
+                <select value={this.state.nurseryIdx} onChange={this.handleChange}>
+                {
+                    this.state.nursery_list.map((nursery)=>
+                    <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                    )
+                }
                 </select>
                 <table border="1"> 
                     <tbody> 
@@ -67,16 +65,8 @@ class Size extends Component {
                         <td width="100">14-20cm</td> 
                         <td width="100">20-30cm</td> 
                     </tr>
-                    {
-                        board == 1 ? board1.map(row => 
-                            (<BoardItem key={row.date} row={row} />)
-                        ) : null 
-                    } 
-                    {
-                        board == 2 ? board2.map(row => 
-                            (<BoardItem key={row.date} row={row} />)
-                        ) : null 
-                    } 
+                    
+
 
                     </tbody> 
                 </table>

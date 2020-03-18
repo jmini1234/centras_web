@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import My from './Components/My';
 import styled from 'styled-components';
 import Header from './Layout/Header';
@@ -14,12 +14,11 @@ class App extends Component {
     return (
       <div>
         <img alt="main_bg" style={style_bg} src={main1} className="main_bg"></img>
-        <Header> 
-        </Header>
+        <Header />
         <Router />
       </div>
     )
   }
 }
 
-export default App;
+export default withRouter(App);

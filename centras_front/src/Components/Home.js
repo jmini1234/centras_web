@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
+import Header from '../Layout/Header';
 const Home = () => {
-    console.log("Home");
     return(
         <div className="main-content"> 
         <div className="main-content-title">

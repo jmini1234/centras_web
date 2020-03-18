@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import main1 from '../img/centras_main1.JPG'
 // import main2 from 'components/img/centras_main2.jpg'
 // import main3 from 'components/img/centras_main3.jpg'
+import Header from '../Layout/Header';
 import qs from "qs";
 import './Register.css'
 import './NuseryList';
@@ -17,7 +18,8 @@ class Register extends Component {
     super(props);
     this.state = {
       nursery_id	: "" ,
-      nursery_list : []
+      nursery_list : [],
+      isupdate : false 
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,7 +34,7 @@ class Register extends Component {
     e.preventDefault();
     const nurseryInfo = {
       'nursery_id' : this.state.nursery_id
-  };
+    };
     console.log(localStorage.getItem("AUTHORIZATION"));
     const nursery_info = {
         method: "POST",

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import fish from '../img/fish.png'
 import './Signup.css'
 import qs from "qs"
-
+import Header from '../Layout/Header';
 const style_p = {
     color:'black',
 }

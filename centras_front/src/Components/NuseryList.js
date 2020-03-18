@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 class NurseryList extends Component{
     constructor(props){
         super(props);
-        this.state = {nursery_list : []};
+        this.state = {nursery_list : [],
+        isloggedIn : false 
+        };
     }
 
     componentWillMount(){
@@ -11,9 +13,20 @@ class NurseryList extends Component{
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        fetch("http://localhost:3001/nursery/list" , { headers })
-        .then(res => res.json())
-        .then(result => this.setState({nursery_list: result.data}));
+        if(localStorage.getItem("AUTHORIZATION")!=null){
+            this.setState({
+                isloggedIn : true
+            })
+            fetch("http://localhost:3001/nursery/list" , { headers })
+            .then(res => res.json())
+            .then(result => this.setState({nursery_list: result.data}));
+        }
+        else{
+            alert("로그인이 필요한 서비스입니다!");
+            window.history.back();
+
+        }
+        
     }
 
     render(){

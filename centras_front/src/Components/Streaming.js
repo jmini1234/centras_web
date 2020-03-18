@@ -1,6 +1,6 @@
 import React from 'react';
 import My from './My';
-
+import Header from '../Layout/Header';
 const Streaming = () => {
     return(
         <div>
