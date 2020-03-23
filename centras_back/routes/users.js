@@ -92,7 +92,7 @@ module.exports = (app) => {
             id : id,
             salt : user.salt
           };
-          let option = {expiresIn : '1h'};
+          let option = {expiresIn : '24h'};
           token = jwt.sign(payload,jwtSecret,option);
 
           // token 값 출력
