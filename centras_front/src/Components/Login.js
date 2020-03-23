@@ -3,9 +3,9 @@ import fish from '../img/fish.png'
 import './Login.css'
 import { Link } from 'react-router-dom';
 import qs from "qs";
-
+import Header from '../Layout/Header';
 class Login extends Component{
-
+    
     constructor(props){
         super(props);
         this.state = {
