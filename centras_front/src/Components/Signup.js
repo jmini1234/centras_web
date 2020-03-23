@@ -1,11 +1,6 @@
-import React, { Component } from 'react'
-import fish from '../img/fish.png'
 import './Signup.css'
 import qs from "qs"
-
-const style_p = {
-    color:'black',
-}
+import React, { Component } from 'react'
 
 const style_btn = {
     'margin-left': '260px',

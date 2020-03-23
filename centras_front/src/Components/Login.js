@@ -38,7 +38,7 @@ class Login extends Component{
         fetch("http://localhost:3001/users/login", login_info)
         .then(response => { 
             console.log(response.json())
-            if(response.status == 400){
+            if(response.status === 400){
                 alert("로그인 실패")
             }
             else{

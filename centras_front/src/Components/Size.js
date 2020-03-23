@@ -71,12 +71,12 @@ class Size extends Component {
                         <td width="100">20-30cm</td> 
                     </tr>
                     {
-                        board == 1 ? board1.map(row => 
+                        board === 1 ? board1.map(row => 
                             (<BoardItem key={row.date} row={row} />)
                         ) : null 
                     } 
                     {
-                        board == 2 ? board2.map(row => 
+                        board === 2 ? board2.map(row => 
                             (<BoardItem key={row.date} row={row} />)
                         ) : null 
                     } 
