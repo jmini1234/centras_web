@@ -27,7 +27,7 @@ class Register extends Component {
                 width :'180px',
                 height: '60px',
                 position: 'absolute',
-                bottom: '280px',
+                bottom: '270px',
                 left: '750px',
                 'border-radius': '5%',
                 margin: '0'

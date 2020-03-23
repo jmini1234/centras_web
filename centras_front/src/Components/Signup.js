@@ -54,7 +54,7 @@ class Signup extends Component{
         fetch("http://localhost:3001/users/sign_up", signup_info)
         .then(response => { 
             console.log(response.json())
-            if(response.status == 400){
+            if(response.status === 400){
                 alert("중복된 아이디입니다")
             }
             else{
@@ -69,14 +69,7 @@ class Signup extends Component{
     render() {
         return (
         <div className="signup-main">
-        <div className="header-top">
-            <div className="Header_Logo">
-                    <img src={fish} alt="centras_fish_pic"/>
-                    <p style={style_p}>CENTRAS</p>
-            </div>
-            <p id="signup_header_title"> 회원가입 </p>
-        </div>
-
+            <div className="signup-title">회원가입</div>
             <div className="signup-form">
             <div className="signup-field">
                 <span className="signup-tag" >아이디</span>

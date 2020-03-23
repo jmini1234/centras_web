@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react'
 import main1 from '../img/centras_main1.JPG'
-// import main2 from 'components/img/centras_main2.jpg'
-// import main3 from 'components/img/centras_main3.jpg'
 import './About.css'
 
 const style_bg={

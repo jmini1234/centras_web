@@ -52,19 +52,15 @@ class Login extends Component{
     }
 
     render() {
-        const style_p = {
-            color:'black',
-        }
-
         const style_header={            
-            margin : '30px 0 0 300px',
+            margin : '50px 0 0 300px',
         }
         return (
         <div className="login-main">
         <div className="login-title">CENTRAS의 많은 서비스를 이용하려면 로그인 해주세요!</div>
         <div style={style_header} className="Header_Logo">
             <img src={fish} alt="centras_fish_pic"/>
-            <p style={style_p}>CENTRAS</p>
+            <p>CENTRAS</p>
         </div>
         <div className="login-form">
            <div class="inputForm" id="inputID" class="input-group mb-3">

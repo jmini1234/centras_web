@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import fish from '/img/fish.png'
+import fish from '../img/fish.png'
 import './Header.css'
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ class Header extends Component{
         return (
         <div className="top_header">
             <div className="Header_Logo">
+                <img src={fish} alt="centras_fish_pic"/>
                 <p><Link to='/' style={{ textDecoration: 'none' }}>CENTRAS</Link></p>
             </div>
             <div className="header_list">

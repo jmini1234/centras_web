@@ -2,7 +2,7 @@
     position: absolute;
     width: 1000px;
     height: 800px;
-    top: 80%;
+    top: 45%;
     left: 53%;
     margin-top: -100px;
     margin-left: -400px;
@@ -55,4 +55,11 @@
     font-size: 20px;
     border: none;
     border-radius: 5%
+}
+
+.signup-title{
+    font-size: 44px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 160px;
 }

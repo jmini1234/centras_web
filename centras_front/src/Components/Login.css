@@ -1,17 +1,13 @@
-/* body{
-    background-image: none !important;
-} */
-
 .login-form{
     margin-left: 180px;
-    margin-top: 200px;
+    margin-top: 250px;
 }
 
 .login-main{
     position: absolute;
     width: 1000px;
     height: 800px;
-    top: 110%;
+    top: 70%;
     left: 50%;
     margin-top: -500px;
     margin-left: -400px;
