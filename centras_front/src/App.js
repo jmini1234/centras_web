@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom"; 
 import Router from './Routes/Router';
 import Header from './Layout/Header';
 import './App.css';
