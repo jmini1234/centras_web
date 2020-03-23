@@ -1,0 +1,26 @@
+img.sub_bg {
+    position: absolute;
+    top: 0;
+    height: 600px;
+    width: 100%;
+    z-index: -1;
+  }
+
+.project_title{
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.project_content{
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    top: 57%;
+    left: 5%;
+}
+
+.project_introduce div, .project_introduce_team div{
+    margin: 0;
+    margin-top: 60px;
+    font-size: 30px;
+}
