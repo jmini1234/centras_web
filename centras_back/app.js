@@ -13,6 +13,26 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//api test 
+
+app.get('/api/hello', (req, res) => {
+  res.send({ message: 'Hello Express!' });
+  });
+
+//api test 2
+app.get('/users', function(req, res, next) {
+  res.json([
+    {id: 1, username: "somebody"},
+    {id: 2, username: "somebody_else"}
+  ]);
+});
+
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 const pool = mysql.createPool({
     host:dbConfig.host,
     user: dbConfig.user,
