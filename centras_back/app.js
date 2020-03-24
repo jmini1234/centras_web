@@ -26,7 +26,7 @@ app.set('pool',pool)
 
 var usersRouter = require('./routes/users')(app);
 var nurseyRouter = require('./routes/nursery')(app);
-
+var espRouter = require('./routes/esp')(app);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/nursery',nurseyRouter);
+app.use('/esp',espRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
