@@ -18,13 +18,21 @@ class MyTemp extends Component {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
+        var first;
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
             console.log(result);
             this.setState({nursery_list: result.data})
-            }  
-        );
+            first = result.data[0].idx;
+            fetch("http://localhost:3001/nursery/" + first + "/temperature", { headers })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                this.setState({temperature: result.temperature})
+            });
+        
+        });
     }
 
     handleChange(e){

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import My from './My';
 import Header from '../Layout/Header';
+import NurseryList from './NuseryList';
 
 // {board1.map(row =>(<BoardItem key={row.date} row={row} />))} 
 class Size extends Component {
@@ -18,17 +19,21 @@ class Size extends Component {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        var Idx;
+        var first;
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
             this.setState({nursery_list: result.data})
-            Idx = result.data[0].idx;
+            console.log(result.data[0].idx);
+            first = result.data[0].idx;
+            fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
+            .then(res => res.json())
+            .then(result2 => {
+                console.log(result2)
+                this.setState({size: result2.size})
+            });
             }  
         );
-        fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
-        .then(res => res.json())
-        .then(result => console.log(result));
     }
 
     handleChange(e){
@@ -48,13 +53,12 @@ class Size extends Component {
     }
     
     render(){
-        
         return(
             
             <div>
                 <My />
                 <h1>크기</h1>
-                <select value={this.state.nurseryIdx} onChange={this.handleChange}>
+                <select defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
                 {
                     this.state.nursery_list.map((nursery)=>
                     <option value = {nursery.idx}> {nursery.nursery_id} </option>
