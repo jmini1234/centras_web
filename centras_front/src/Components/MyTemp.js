@@ -6,11 +6,14 @@ class MyTemp extends Component {
         super(props);
         this.state = {
             nursery_list : [],
-            nurseryIdx : -1
+            nurseryIdx : -1,
+            temperature : []
         };
         this.handleChange = this.handleChange.bind(this);
     }
+
     componentWillMount(){
+        
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
@@ -18,14 +21,10 @@ class MyTemp extends Component {
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
+            console.log(result);
             this.setState({nursery_list: result.data})
             }  
         );
-        /*
-        fetch("http://localhost:3001/nursery/" + Idx + "/temperature", { headers })
-        .then(res => res.json())
-        .then(result => console.log(result));
-        */
     }
 
     handleChange(e){
@@ -38,12 +37,15 @@ class MyTemp extends Component {
         var Idx = e.target.value;
         fetch("http://localhost:3001/nursery/" + Idx + "/temperature", { headers })
         .then(res => res.json())
-        .then(result => console.log(result));
-        //console.log(this.state.nursery_list);
+        .then(result => {
+            console.log(result)
+            this.setState({temperature: result.temperature})
+        });
     }
 
     
     render(){
+        console.log(this.state.temperature);
         return(
             <div>
                 <My />
@@ -56,7 +58,11 @@ class MyTemp extends Component {
                 }
                 </select>
                 <div>
-                    
+                {
+                    this.state.temperature.map((temper) =>
+                    <div> {temper.temp} {temper.update_time} </div>
+                    ) 
+                }  
                 </div>
             </div>
         )

@@ -9,6 +9,7 @@ class Size extends Component {
         super(props);
         this.state = {
             nursery_list : [],
+            size : []
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -25,7 +26,6 @@ class Size extends Component {
             Idx = result.data[0].idx;
             }  
         );
-        console.log("aahhhhhhhhhhhhhhhh" + Idx);
         fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
         .then(res => res.json())
         .then(result => console.log(result));
@@ -41,10 +41,14 @@ class Size extends Component {
         var Idx = e.target.value;
         fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
         .then(res => res.json())
-        .then(result => console.log(result));
+        .then(result => {
+            console.log(result)
+            this.setState({size: result.size})
+        });
     }
     
     render(){
+        
         return(
             
             <div>
@@ -66,15 +70,11 @@ class Size extends Component {
                         <td width="100">20-30cm</td> 
                     </tr>
                     {
-                        board === 1 ? board1.map(row => 
-                            (<BoardItem key={row.date} row={row} />)
-                        ) : null 
-                    } 
-                    {
-                        board === 2 ? board2.map(row => 
-                            (<BoardItem key={row.date} row={row} />)
-                        ) : null 
-                    }          
+                        this.state.size.map((sizeList) =>
+                        (<BoardItem key={sizeList.idx} row ={sizeList} />)
+                        ) 
+                    }
+                   
                     </tbody> 
                 </table>
             </div>
@@ -88,10 +88,10 @@ class BoardItem extends React.Component {
     render() { 
         return( 
         <tr> 
-            <td>{this.props.row.date}</td> 
-            <td>{this.props.row.small}</td> 
-            <td>{this.props.row.medium}</td> 
-            <td>{this.props.row.large}</td> 
+            <td>{this.props.row.update_time}</td> 
+            <td>{this.props.row.s_num}</td> 
+            <td>{this.props.row.m_num}</td> 
+            <td>{this.props.row.l_num}</td> 
             </tr> 
         ); 
     }
