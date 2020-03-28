@@ -189,7 +189,28 @@ module.exports = (app) => {
                 });
             }
         });
-  
+    });
+
+    /*
+    양식장 카메라 ip 주소 등록
+    */
+    router.post('/:idx/streaming',isLogin,function(req,res,next){
+        let ip_info = {
+             'nursery_idx' : req.params.idx,
+             'ip' : req.body.ip
+        }
+        conn.query('INSERT INTO streaming SET ?',ip_info,function(err,results,next){
+            if(err) {
+                res.status(400).send({
+                    "error" : err
+                });
+            }
+            else{
+                res.status(200).send({
+                    "streaming" : results
+                });
+            }
+        });
     });
 
     return router;
