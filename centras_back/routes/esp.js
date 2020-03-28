@@ -64,8 +64,34 @@ module.exports = (app) => {
                 }); 
             }
         })
-
     });
+
+    /*
+    크기 측정 새로 시작하기 버튼 
+     */
+
+    router.post('/:idx/size', function (req,res) {
+        // idx 양식장 크기 측정 시작하기 
+        let reset = {
+            'nursery_idx' : req.params.idx,
+            's_num' : 0,
+            'm_num' : 0,
+            'l_num' : 0,
+            'update_time' : moment().format('YYYY-MM-DD HH:mm:ss')
+        }
+        conn.query('INSERT INTO size SET ? ',reset,function (err,results,next) {
+            if (err) {
+                res.status(400).send({
+                    "error": err
+                })
+            } else {
+                res.status(200).send({
+                    "message": '크기 측정 시작'
+                });
+            }
+        })
+    });
+
 
     return router;
 }
