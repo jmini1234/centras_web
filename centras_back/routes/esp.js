@@ -7,7 +7,7 @@ module.exports = (app) => {
     require('moment-timezone');  
     moment.tz.setDefault("Asia/Seoul");
 
-    router.post('/', function (req,res) {
+    router.post('/',isLogin, function (req,res) {
         // ip 주소와 size 받음 
         let ip = req.body.ip;
         let size = req.body.size;
@@ -70,7 +70,7 @@ module.exports = (app) => {
     크기 측정 새로 시작하기 버튼 
      */
 
-    router.post('/:idx/size', function (req,res) {
+    router.post('/:idx/size',isLogin, function (req,res) {
         // idx 양식장 크기 측정 시작하기 
         let reset = {
             'nursery_idx' : req.params.idx,
