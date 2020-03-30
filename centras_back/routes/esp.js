@@ -3,6 +3,8 @@ module.exports = (app) => {
     var router = express.Router();
     const conn = app.get('pool');
 
+    var isLogin = require('./token.js');
+
     var moment = require('moment');
     require('moment-timezone');  
     moment.tz.setDefault("Asia/Seoul");
@@ -82,11 +84,11 @@ module.exports = (app) => {
         conn.query('INSERT INTO size SET ? ',reset,function (err,results,next) {
             if (err) {
                 res.status(400).send({
-                    "error": err
+                    "error": "error ocurred"
                 })
             } else {
                 res.status(200).send({
-                    "message": '크기 측정 시작'
+                    "message": "크기 측정 시작"
                 });
             }
         })
