@@ -32,6 +32,9 @@ class My extends Component{
                 <div className = "streaming">
                     <Link to='/my/streaming' style={{ textDecoration: 'none' }}>스트리밍</Link>
                 </div>
+                <div className = "camera">
+                    <Link to= '/my/camera' style={{ textDecoration: 'none' }}>카메라 추가</Link>
+                </div>
             </div>
             </div>
         )

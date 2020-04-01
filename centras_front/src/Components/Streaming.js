@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import My from './My';
-import Header from '../Layout/Header';
-const Streaming = () => {
-    return(
-        <div>
-            <My />
-            <h1>스트리밍</h1>
-        </div>
-    );
-};
+import './Streaming.css';
+
+
+class Streaming extends Component{
+    render(){
+        return(
+            <div>
+                <My />
+                <div className = "streamingPage">
+                <div className = "streamingHeader">스트리밍</div>
+                </div>
+            </div>
+        );
+    }
+}
 export default Streaming;

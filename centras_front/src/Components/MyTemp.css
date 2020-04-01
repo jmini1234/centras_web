@@ -17,9 +17,9 @@
 
 .tempSelect{
     width: 10%;
-    height: 15%;
+    height: 25px;
     margin-left: 12%;
-    margin-top: -12px;
+    margin-top: 0.5px;
     position: absolute;
     
 }

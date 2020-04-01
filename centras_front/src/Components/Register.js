@@ -56,6 +56,7 @@ class Register extends Component {
               }
               else{
                   alert("등록 성공")
+                  window.location.reload();
               }
           }
       )

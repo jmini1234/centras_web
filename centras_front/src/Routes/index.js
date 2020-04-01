@@ -8,3 +8,4 @@ export {default as Size} from '../Components/Size';
 export {default as Login} from '../Components/Login'
 export {default as Streaming} from '../Components/Streaming';
 export {default as Signup} from '../Components/Signup';
+export {default as MyCamera} from '../Components/MyCamera';
