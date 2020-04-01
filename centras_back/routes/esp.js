@@ -21,7 +21,7 @@ module.exports = (app) => {
 
                 // 사이즈는 s,m,l 3종류 
                 if (size=='s')
-                    conn.query('UPDATE size SET s_num=s_num+1,update_time =? WHERE nursery_idx = ?',[date,nursery_idx],function(err,results){
+                    conn.query('UPDATE size SET s_num=s_num+1,update_time =? WHERE isActive=1 and nursery_idx = ?',[date,nursery_idx],function(err,results){
                         if(err){
                             res.status(400).send({
                                 "message": "error ocurred"
