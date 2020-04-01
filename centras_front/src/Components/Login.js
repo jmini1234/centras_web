@@ -42,7 +42,7 @@ class Login extends Component{
                 console.log(result);
                 localStorage.setItem("AUTHORIZATION",result.token);
                 alert("로그인 성공");
-                window.history.back();
+                window.location = '/';
             }
             else{
                 alert("로그인 실패")
