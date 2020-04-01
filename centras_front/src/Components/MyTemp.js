@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import My from './My';
 import Header from '../Layout/Header';
+import './MyTemp.css';
+import {XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from "react-vis";
+
+
+
 class MyTemp extends Component {
     constructor(props){
         super(props);
@@ -13,7 +18,6 @@ class MyTemp extends Component {
     }
 
     componentWillMount(){
-        
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
@@ -51,27 +55,30 @@ class MyTemp extends Component {
         });
     }
 
-    
     render(){
         console.log(this.state.temperature);
         return(
-            <div>
+            <div className = "tempMain">
                 <My />
-                <h1>온도</h1>
-                <select value={this.state.nurseryIdx} onChange={this.handleChange}>
+                <div className = "tempPage">
+                <div className = "tempHeader">실시간 수온</div>
+                <div className = "selectMsg"> 양식장 선택</div>
+                <select className = "tempSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
                 {
                     this.state.nursery_list.map((nursery)=>
                     <option value = {nursery.idx}> {nursery.nursery_id} </option>
                     )
                 }
                 </select>
-                <div>
+                <div className = "tempList">
                 {
                     this.state.temperature.map((temper) =>
                     <div> {temper.temp} {temper.update_time} </div>
                     ) 
                 }  
                 </div>
+                </div>
+                
             </div>
         )
     }

@@ -1,0 +1,32 @@
+
+
+.tempPage{
+    
+    width: 70%;
+    margin-top :50px;
+    margin-left: 24%;
+    position: absolute;
+}
+
+.tempHeader{
+    font-size : 20px;
+    height : 1px;
+    margin-top :1px;
+    margin-bottom : 5%;
+}
+
+.tempSelect{
+    width: 10%;
+    height: 15%;
+    margin-left: 12%;
+    margin-top: -12px;
+    position: absolute;
+    
+}
+.selectMsg{
+    width : 11%;
+    position: absolute;
+}
+.tempList{
+    margin-top: 10%;
+}

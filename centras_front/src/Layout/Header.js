@@ -15,6 +15,7 @@ class Header extends Component{
         window.location.reload();
     }
     render() {
+       
         return (
         <div className="top_header">
             <div className="Header_Logo">
