@@ -9,24 +9,6 @@ var dbConfig = require('./routes/dbConfig');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-//api test 
-
-app.get('/api/hello', (req, res) => {
-  res.send({ message: 'Hello Express!' });
-  });
-
-//api test 2
-app.get('/users', function(req, res, next) {
-  res.json([
-    {id: 1, username: "somebody"},
-    {id: 2, username: "somebody_else"}
-  ]);
-});
-
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
@@ -42,10 +24,9 @@ const pool = mysql.createPool({
 
 app.set('pool',pool)
 
-var indexRouter = require('./routes/index')(app);
 var usersRouter = require('./routes/users')(app);
 var nurseyRouter = require('./routes/nursery')(app);
-
+var espRouter = require('./routes/esp')(app);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -53,9 +34,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/nursery',nurseyRouter);
+app.use('/esp',espRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

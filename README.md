@@ -32,7 +32,6 @@
   
 ```js
   // routes/dbConfig.js
-  
   let dbConfig = {
   host:'Your host name',
   user :'Your user name',
@@ -42,6 +41,12 @@
 }
 
 module.exports = dbConfig;
+
+```
+```js
+  // .env
+   SECRET_KEY='Your secret_key',
+   JWT_SECRET_KEY='Your jwt secret_key'
 
 ```
 - **REST API**
