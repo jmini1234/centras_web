@@ -95,7 +95,7 @@ class Size extends Component {
                         {
                             this.state.size.map((sizeList) =>
                             (<SizeItem  
-                                key={sizeList.idx} update_time ={sizeList.update_time}
+                                key={sizeList.idx} update_time ={sizeList.update_time.substring(0,10)}
                                 s_num={sizeList.s_num} m_num={sizeList.m_num} l_num={sizeList.l_num}/>)
                             ) 
                         }

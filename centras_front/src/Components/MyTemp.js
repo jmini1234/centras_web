@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import My from './My';
-import Header from '../Layout/Header';
 import './MyTemp.css';
 import {XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from "react-vis";
 
