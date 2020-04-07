@@ -13,6 +13,8 @@ module.exports = (app) => {
         // ip 주소와 size 받음 
         let ip = req.body.ip;
         let size = req.body.size;
+        // isEnd가 1이면 size 측정 end
+        let isEnd = req.body.isEnd;
 
         conn.query('SELECT * FROM streaming WHERE ip = ?',[ip],function (err,results) {
             if(results[0]){
@@ -20,7 +22,7 @@ module.exports = (app) => {
                 var date = moment().format('YYYY-MM-DD HH:mm:ss');
 
                 // 사이즈는 s,m,l 3종류 
-                if (size=='s')
+                if (size=='s' && isEnd == 0)
                     conn.query('UPDATE size SET s_num=s_num+1,update_time =? WHERE isActive=1 and nursery_idx = ?',[date,nursery_idx],function(err,results){
                         if(err){
                             res.status(400).send({
@@ -33,8 +35,8 @@ module.exports = (app) => {
                             });
                         }
                     })
-                else if (size=='m')
-                    conn.query('UPDATE size SET m_num=m_num+1,update_time =? WHERE nursery_idx = ?',[date,nursery_idx],function(err,results){
+                else if (size=='m' && isEnd == 0)
+                    conn.query('UPDATE size SET m_num=m_num+1,update_time =? WHERE isActive=1 and nursery_idx = ?',[date,nursery_idx],function(err,results){
                         if(err){
                             res.status(400).send({
                                 "message": "error ocurred"
@@ -46,8 +48,8 @@ module.exports = (app) => {
                             });
                         }
                     })
-                else if (size=='l')
-                    conn.query('UPDATE size SET l_num=l_num+1,update_time =? WHERE nursery_idx = ?',[date,nursery_idx],function(err,results){
+                else if (size=='l' && isEnd == 0)
+                    conn.query('UPDATE size SET l_num=l_num+1,update_time =? WHERE isActive=1 and nursery_idx = ? ',[date,nursery_idx],function(err,results){
                         if(err){
                             res.status(400).send({
                                 "message": "error ocurred"
@@ -59,6 +61,20 @@ module.exports = (app) => {
                             });
                         }
                     })
+                else if (isEnd == 1){
+                    conn.query('UPDATE size SET isActive=0 WHERE isActive=1 and nursery_idx = ? ',[nursery_idx],function(err,results){
+                        if(err){
+                            res.status(400).send({
+                                "error": err
+                            });    
+                        }
+                        else{
+                            res.status(200).send({
+                                "message":"크기 업데이트 성공"
+                            });
+                        }
+                    })
+                }
             }
             else {
                 res.status(400).send({
@@ -74,7 +90,6 @@ module.exports = (app) => {
 
     router.post('/:idx/size',isLogin, function (req,res) {
         // idx 양식장 크기 측정 시작하기
-        var qry = 'SELECT * FROM size WHERE nursery_idx =' 
         let reset = {
             'nursery_idx' : req.params.idx,
             's_num' : 0,
