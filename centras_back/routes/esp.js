@@ -73,7 +73,8 @@ module.exports = (app) => {
      */
 
     router.post('/:idx/size',isLogin, function (req,res) {
-        // idx 양식장 크기 측정 시작하기 
+        // idx 양식장 크기 측정 시작하기
+        var qry = 'SELECT * FROM size WHERE nursery_idx =' 
         let reset = {
             'nursery_idx' : req.params.idx,
             's_num' : 0,
