@@ -1,0 +1,30 @@
+.cameraPage{
+    width: 70%;
+    margin-top :50px;
+    margin-left: 24%;
+    position: absolute;
+}
+
+.cameraHeader{
+    font-size : 20px;
+    height : 1px;
+    margin-top :1px;
+    margin-bottom : 5%;
+}
+
+.cameraSelect{
+    width: 10%;
+    height: 25px;
+    margin-left: 12%;
+    margin-top: 0.5px;
+    position: absolute;
+}
+
+.camerainputForm{
+    margin-top: 90px;
+    position: absolute;
+}
+
+.submitbutton{
+    margin-top: 20%;
+}

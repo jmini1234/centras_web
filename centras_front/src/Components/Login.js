@@ -36,24 +36,25 @@ class Login extends Component{
         };
         console.log(login_info.body);
         fetch("http://localhost:3001/users/login", login_info)
-        .then(response => { 
-            console.log(response.json())
-            if(response.status === 400){
-                alert("로그인 실패")
+        .then(res => res.json())
+        .then(result => {
+            if(result.code == 0){
+                console.log(result);
+                localStorage.setItem("AUTHORIZATION",result.token);
+                alert("로그인 성공");
+                window.location = '/';
             }
             else{
-                alert("로그인 성공")
+                alert("로그인 실패")
             }
-        })
-        .catch(error => {
-            console.log(error.response)
-        });
-
+            
+        } )
     }
 
     render() {
-        const style_header={            
-            margin : '50px 0 0 300px',
+        const style_header={  
+            //화면 겹침 때문에 값 바꿈          
+            margin : '5000px 0 0 300px',
         }
         return (
         <div className="login-main">
@@ -84,8 +85,7 @@ class Login extends Component{
                     비밀번호 찾기
                 </div>
             </div>
-           
-
+            
             <div className="login-footer">아직 회원이 아니신가요? 
                 <div className="signup_link">
                     <Link to='/users/signup' style={{ textDecoration: 'none' }}>

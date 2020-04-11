@@ -1,0 +1,25 @@
+.sizeHeader{
+    width: 12%;
+    position: absolute;
+}
+.sizePage{
+    
+    width: 70%;
+    margin-top :50px;
+    margin-left: 24%;
+    position: absolute;
+}
+
+.sizeSelect{
+    width: 10%;
+    height: 25px;
+    margin-top: 0.5px;
+    margin-left : 12%;
+    position: absolute;
+    
+}
+
+.sizeTable{
+    width:10%;
+    margin-top: 6%;   
+}

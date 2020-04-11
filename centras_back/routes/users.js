@@ -96,10 +96,10 @@ module.exports = (app) => {
           token = jwt.sign(payload,jwtSecret,option);
 
           // token 값 출력
-          res.status(200).send({'message':'로그인 성공','token':token});
+          res.status(200).send({'message':'로그인 성공','token':token, 'code': 0});
         }
         else{
-          res.status(400).send({"message":'로그인 실패'});
+          res.status(400).send({"message":'로그인 실패', 'code': 1});
         }
       });
   });

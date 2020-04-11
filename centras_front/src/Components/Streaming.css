@@ -1,0 +1,17 @@
+.streamingPage{
+    width: 70%;
+    margin-top :50px;
+    margin-left: 24%;
+    position: absolute;
+}
+
+.streamingHeader{
+    font-size : 20px;
+    height : 1px;
+    margin-top :1px;
+    margin-bottom : 5%;
+}
+
+.streamingList{
+    margin-top: 10%;
+}

@@ -18,8 +18,7 @@ class Register extends Component {
     super(props);
     this.state = {
       nursery_id	: "" ,
-      nursery_list : [],
-      isupdate : false 
+      nursery_list : []
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -56,10 +55,11 @@ class Register extends Component {
               }
               else{
                   alert("등록 성공")
+                  window.location.reload();
               }
           }
       )
-  })
+    })
     .catch(error => {
         console.log(error.response)
     });

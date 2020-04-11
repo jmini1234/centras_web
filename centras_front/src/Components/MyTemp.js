@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
 import My from './My';
-import Header from '../Layout/Header';
+import './MyTemp.css';
+import {XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from "react-vis";
+
+
+
 class MyTemp extends Component {
     constructor(props){
         super(props);
         this.state = {
             nursery_list : [],
-            nurseryIdx : -1
+            nurseryIdx : -1,
+            temperature : []
         };
         this.handleChange = this.handleChange.bind(this);
     }
+
     componentWillMount(){
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
+        var first;
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
+            console.log(result);
             this.setState({nursery_list: result.data})
-            }  
-        );
-        /*
-        fetch("http://localhost:3001/nursery/" + Idx + "/temperature", { headers })
-        .then(res => res.json())
-        .then(result => console.log(result));
-        */
+            first = result.data[0].idx;
+            fetch("http://localhost:3001/nursery/" + first + "/temperature", { headers })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result)
+                this.setState({temperature: result.temperature})
+            });
+        
+        });
     }
 
     handleChange(e){
@@ -38,26 +48,36 @@ class MyTemp extends Component {
         var Idx = e.target.value;
         fetch("http://localhost:3001/nursery/" + Idx + "/temperature", { headers })
         .then(res => res.json())
-        .then(result => console.log(result));
-        //console.log(this.state.nursery_list);
+        .then(result => {
+            console.log(result)
+            this.setState({temperature: result.temperature})
+        });
     }
 
-    
     render(){
+        console.log(this.state.temperature);
         return(
-            <div>
+            <div className = "tempMain">
                 <My />
-                <h1>온도</h1>
-                <select value={this.state.nurseryIdx} onChange={this.handleChange}>
+                <div className = "tempPage">
+                <div className = "tempHeader">실시간 수온</div>
+                <div className = "selectMsg"> 양식장 선택</div>
+                <select className = "tempSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
                 {
                     this.state.nursery_list.map((nursery)=>
                     <option value = {nursery.idx}> {nursery.nursery_id} </option>
                     )
                 }
                 </select>
-                <div>
-                    
+                <div className = "tempList">
+                {
+                    this.state.temperature.map((temper) =>
+                    <div> {temper.temp} {temper.update_time} </div>
+                    ) 
+                }  
                 </div>
+                </div>
+                
             </div>
         )
     }
