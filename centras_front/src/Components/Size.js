@@ -24,7 +24,8 @@ class Size extends Component {
         this.state = {
             nursery_list : [],
             size : [],
-            check : false
+            check : false,
+            curIdx : -1
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -44,8 +45,10 @@ class Size extends Component {
             else{
                 this.setState({check: true});
                 this.setState({nursery_list: result.data})
+                
                 console.log(result.data[0].idx);
                 first = result.data[0].idx;
+                this.setState({curIdx: first});
                 fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
                 .then(res => res.json())
                 .then(result2 => {
@@ -60,6 +63,7 @@ class Size extends Component {
     }
     
     handleChange(e){
+        this.setState({curIdx: e.target.value});
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
@@ -73,53 +77,95 @@ class Size extends Component {
             this.setState({size: result.size})
         });
     }
-    render(){
-        if(this.state.check == false){
-            return(
-                <Home />
+    getSizeList(){
+        const headers = {
+            "x-access-token": localStorage.getItem("AUTHORIZATION"),
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+        var idx = this.state.curIdx;
+        fetch("http://localhost:3001/nursery/" + idx + "/size", { headers })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            this.setState({size: result.size})
+        });
+    }
+    handleClick = e => {
+        e.preventDefault();
+        const info = {
+            method: "POST",
+            headers: {
+                "x-access-token": localStorage.getItem("AUTHORIZATION"),
+                "Content-Type" : "application/x-www-form-urlencoded"
+            }
+        };
+        var idx = this.state.curIdx;
+        console.log("idx = "+idx);
+        fetch("http://localhost:3001/esp/" + idx + "/size", info)
+        .then(response => { 
+            console.log(response);
+            response.json().then(
+                result => {
+                    console.log(result);
+                    if(response.status == 400){
+                        alert("측정 실패")
+                    }
+                    else{
+                        alert("측정 성공")
+                        this.getSizeList();
+                    }
+                }
             )
-        }
-        else{
-            return(
-                <div>
-                    <My />
-                    <div className = "sizePage">
-    
-                        <div className = "sizeHeader">양식장 선택</div> 
-                        <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
+          })
+          .catch(error => {
+              console.log(error.response)
+          });
+    }
+    render(){
+        return(
+            <div>
+                <My />
+                <div className = "sizePage">
+
+                    <div className = "sizeHeader">양식장 선택</div> 
+                    <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
+                    {
+                        this.state.nursery_list.map((nursery)=>
+                        <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                        )
+                    }
+                    </select>
+                    <Table className = "sizeTable">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align = 'center' >날짜</TableCell>
+                                <TableCell align = 'center'>5-13cm</TableCell>
+                                <TableCell align = 'center'>14-20cm</TableCell>
+                                <TableCell align = 'center'>20-30cm</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                         {
-                            this.state.nursery_list.map((nursery)=>
-                            <option value = {nursery.idx}> {nursery.nursery_id} </option>
-                            )
+                            this.state.size.map((sizeList) =>
+                            (<SizeItem  
+                                key={sizeList.idx} update_time ={sizeList.update_time.substring(0,10)}
+                                s_num={sizeList.s_num} m_num={sizeList.m_num} l_num={sizeList.l_num}/>)
+                            ) 
                         }
-                        </select>
-                        <Table className = "sizeTable">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align = 'center' >날짜</TableCell>
-                                    <TableCell align = 'center'>5-13cm</TableCell>
-                                    <TableCell align = 'center'>14-20cm</TableCell>
-                                    <TableCell align = 'center'>20-30cm</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {
-                                this.state.size.map((sizeList) =>
-                                (<SizeItem  
-                                    key={sizeList.idx} update_time ={sizeList.update_time.substring(0,10)}
-                                    s_num={sizeList.s_num} m_num={sizeList.m_num} l_num={sizeList.l_num}/>)
-                                ) 
-                            }
-                            </TableBody>
-                        </Table>
-                        
-                    </div>
-                    
+                        </TableBody>
+                    </Table>
+                    <button onClick={this.handleClick} style={{
+                        width :'100px',
+                        height: '60px',
+                        position: 'absolute',
+                        bottom: '200px',
+                        left: '750px',
+                        'border-radius': '5%',
+                        margin: '0'
+                    }} type="button" type="submit" class="btn btn-primary">측정시작</button>
                 </div>
-                
-            );
-        }
-        
+            </div>
+        );
     }
 
 }
