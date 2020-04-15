@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import My from './My';
-import Header from '../Layout/Header';
-import NurseryList from './NuseryList';
+import Home from './Home';
 import './Size.css';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -24,7 +23,8 @@ class Size extends Component {
         super(props);
         this.state = {
             nursery_list : [],
-            size : [] 
+            size : [],
+            check : false
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -37,21 +37,29 @@ class Size extends Component {
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
-            this.setState({nursery_list: result.data})
-            console.log(result.data[0].idx);
-            first = result.data[0].idx;
-            fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
-            .then(res => res.json())
-            .then(result2 => {
-                console.log(result2)
-                this.setState({size: result2.size})
-            });
+            if(result.data.length==0){
+                alert("양식장 등록이 필요합니다")
+                window.location = '/';
+            }
+            else{
+                this.setState({check: true});
+                this.setState({nursery_list: result.data})
+                console.log(result.data[0].idx);
+                first = result.data[0].idx;
+                fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
+                .then(res => res.json())
+                .then(result2 => {
+                    console.log(result2)
+                    this.setState({size: result2.size})
+                });
+            }
+            
             }  
         );
+        
     }
-
+    
     handleChange(e){
-
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
@@ -65,48 +73,53 @@ class Size extends Component {
             this.setState({size: result.size})
         });
     }
-    
     render(){
-        return(
-            
-            <div>
-                <My />
-                <div className = "sizePage">
-
-                    <div className = "sizeHeader">양식장 선택</div> 
-                    <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
-                    {
-                        this.state.nursery_list.map((nursery)=>
-                        <option value = {nursery.idx}> {nursery.nursery_id} </option>
-                        )
-                    }
-                    </select>
-                    
-                    <Table className = "sizeTable">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align = 'center' >날짜</TableCell>
-                                <TableCell align = 'center'>5-13cm</TableCell>
-                                <TableCell align = 'center'>14-20cm</TableCell>
-                                <TableCell align = 'center'>20-30cm</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+        if(this.state.check == false){
+            return(
+                <Home />
+            )
+        }
+        else{
+            return(
+                <div>
+                    <My />
+                    <div className = "sizePage">
+    
+                        <div className = "sizeHeader">양식장 선택</div> 
+                        <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
                         {
-                            this.state.size.map((sizeList) =>
-                            (<SizeItem  
-                                key={sizeList.idx} update_time ={sizeList.update_time.substring(0,10)}
-                                s_num={sizeList.s_num} m_num={sizeList.m_num} l_num={sizeList.l_num}/>)
-                            ) 
+                            this.state.nursery_list.map((nursery)=>
+                            <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                            )
                         }
-                        </TableBody>
-                    </Table>
+                        </select>
+                        <Table className = "sizeTable">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align = 'center' >날짜</TableCell>
+                                    <TableCell align = 'center'>5-13cm</TableCell>
+                                    <TableCell align = 'center'>14-20cm</TableCell>
+                                    <TableCell align = 'center'>20-30cm</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {
+                                this.state.size.map((sizeList) =>
+                                (<SizeItem  
+                                    key={sizeList.idx} update_time ={sizeList.update_time.substring(0,10)}
+                                    s_num={sizeList.s_num} m_num={sizeList.m_num} l_num={sizeList.l_num}/>)
+                                ) 
+                            }
+                            </TableBody>
+                        </Table>
+                        
+                    </div>
                     
                 </div>
                 
-            </div>
-            
-        );
+            );
+        }
+        
     }
 
 }

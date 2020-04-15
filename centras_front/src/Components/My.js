@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 import {StyleSheet, Text, View} from 'react-native';
-import Router from '../Routes/Router';
-import Temp from './Temp';
-import Size from './Size';
-import Streaming from './Streaming';
-import Header from '../Layout/Header';
 import './My.css'
 
 class My extends Component{
@@ -14,7 +9,6 @@ class My extends Component{
         if(localStorage.getItem("AUTHORIZATION")==null){
             alert("로그인이 필요한 서비스입니다!");
             window.location = '/';
-
         }
     }
 

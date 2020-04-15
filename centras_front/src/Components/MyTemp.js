@@ -17,23 +17,32 @@ class MyTemp extends Component {
     }
 
     componentWillMount(){
+        console.log("1111111");
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
         var first;
+        console.log("22222");
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
             console.log(result);
-            this.setState({nursery_list: result.data})
-            first = result.data[0].idx;
-            fetch("http://localhost:3001/nursery/" + first + "/temperature", { headers })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result)
-                this.setState({temperature: result.temperature})
-            });
+            if(result.data.length==0){
+                alert("양식장 등록이 필요합니다")
+                window.location = '/';
+            }
+            else{
+                this.setState({nursery_list: result.data})
+                first = result.data[0].idx;
+                fetch("http://localhost:3001/nursery/" + first + "/temperature", { headers })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    this.setState({temperature: result.temperature})
+                });
+            }
+           
         
         });
     }
@@ -82,6 +91,5 @@ class MyTemp extends Component {
         )
     }
 }
-
 
 export default MyTemp;

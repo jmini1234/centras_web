@@ -3,7 +3,6 @@ export {default as About} from '../Components/About';
 export {default as Register} from '../Components/Register';
 export {default as My} from '../Components/My';
 export {default as MyTemp} from '../Components/MyTemp';
-export {default as Temp} from '../Components/Temp';
 export {default as Size} from '../Components/Size';
 export {default as Login} from '../Components/Login'
 export {default as Streaming} from '../Components/Streaming';
