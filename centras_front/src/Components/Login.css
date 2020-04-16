@@ -1,14 +1,14 @@
 .login-form{
     margin-left: 180px;
-    margin-top: 250px;
+    margin-top: 130px;
 }
 
 .login-main{
     position: absolute;
     width: 1000px;
     height: 800px;
-    top: 120%;
-    left: 50%;
+    top: 75%;
+    left: 47%;
     margin-top: -500px;
     margin-left: -400px;
 }
@@ -33,7 +33,7 @@ input:focus{
 }
  
 
-.form-control, #agreement {
+.form-control{
     margin-bottom: 1.4992503748126vh;
     font-size: 28px;
     line-height: 180%;
@@ -50,12 +50,6 @@ input:focus{
     font-size: 22px;
 }
 
-.find{
-    margin-top: 40px;
-    margin-left: 100px;
-    width: 300px;
-    justify-content: space-around;
-}
 .login-footer{
     margin-top: 40px;
     margin-left: 65px;
@@ -83,4 +77,12 @@ input:focus{
     border : none;
     border-radius: 8%;
 
+}
+
+@media (max-width: 1000px){
+    .login-title{
+        width: 650px;
+        text-align: center;
+        margin-left: 130px
+    }
 }
