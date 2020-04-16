@@ -8,7 +8,7 @@
     width: 1000px;
     height: 800px;
     top: 75%;
-    left: 50%;
+    left: 47%;
     margin-top: -500px;
     margin-left: -400px;
 }
@@ -33,7 +33,7 @@ input:focus{
 }
  
 
-.form-control, #agreement {
+.form-control{
     margin-bottom: 1.4992503748126vh;
     font-size: 28px;
     line-height: 180%;
@@ -77,4 +77,12 @@ input:focus{
     border : none;
     border-radius: 8%;
 
+}
+
+@media (max-width: 1000px){
+    .login-title{
+        width: 650px;
+        text-align: center;
+        margin-left: 130px
+    }
 }

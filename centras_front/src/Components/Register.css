@@ -39,13 +39,41 @@ img.sub_bg {
 }
 
 .nursery-register{
-  width: 50%;
+  width: 45%;
   height: 100%;
   margin-left: 5%;
   border-right: 2px solid #868e96;
 }
 
 .my_nursery_list{
-  width: 50%;
-  margin-left: 5%;
+  margin-left: 25px;
+}
+
+.my_nursery_list_detail{
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.my_nursery_list_detail div{
+  font-size: 25px;
+}
+
+@media (max-width: 1000px){
+  #inputNursery{
+    margin-top: 90px;
+    width: 350px;
+  }
+  .register-sub-title{
+    margin-right: 10px;
+  }
+
+  .form-control{
+    width: 300px !important;
+  }
+
+  .btn-primary{
+    left:150px !important;
+    top: 350px !important;
+  }
+
 }
