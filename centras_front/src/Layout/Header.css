@@ -30,7 +30,6 @@
 .header_list div{
     margin-right: 30px;
     line-height: 130px;
-    color: white;
     font-weight: 600;
 }
 
@@ -45,4 +44,15 @@ body{
 
 a{
     color: black;
+}
+
+
+@media (max-width: 1000px){
+    .header_list{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .header_list div{
+        margin-right: 15px;
+    }
 }

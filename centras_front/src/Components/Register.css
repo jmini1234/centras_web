@@ -13,7 +13,7 @@ img.sub_bg {
     font-size: 26px;
     width: 500px;
     border-bottom: 2px solid #868e96;
-    margin-top: 150px;
+    margin-top: 140px;
 
   }
 
@@ -29,7 +29,8 @@ img.sub_bg {
   margin: 0;
   font-size: 20px;
   font-weight: normal;
-  margin-top: 20px;
+  margin-top: 30px;
+  color : gray;
 }
 
 .register-main div{

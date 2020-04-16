@@ -1,13 +1,13 @@
 .login-form{
     margin-left: 180px;
-    margin-top: 250px;
+    margin-top: 130px;
 }
 
 .login-main{
     position: absolute;
     width: 1000px;
     height: 800px;
-    top: 120%;
+    top: 75%;
     left: 50%;
     margin-top: -500px;
     margin-left: -400px;
@@ -50,12 +50,6 @@ input:focus{
     font-size: 22px;
 }
 
-.find{
-    margin-top: 40px;
-    margin-left: 100px;
-    width: 300px;
-    justify-content: space-around;
-}
 .login-footer{
     margin-top: 40px;
     margin-left: 65px;

@@ -85,7 +85,7 @@ class Register extends Component {
                 height: '60px',
                 position: 'absolute',
                 bottom: '270px',
-                left: '750px',
+                left: '670px',
                 'border-radius': '5%',
                 margin: '0'
             }} type="button" type="submit" class="btn btn-primary">등록하기</button>
