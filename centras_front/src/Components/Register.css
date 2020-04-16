@@ -56,6 +56,7 @@ img.sub_bg {
 
 .my_nursery_list_detail div{
   font-size: 25px;
+  font-weight: normal;
 }
 
 @media (max-width: 1000px){
