@@ -156,7 +156,7 @@ module.exports = (app) => {
 
     router.get('/:idx/size',isLogin,function(req,res,next){
         var idx = req.params.idx;
-        conn.query('SELECT * FROM size WHERE nursery_idx =?',[idx],function(err,results,next){
+        conn.query('SELECT * FROM size WHERE nursery_idx =? LIMIT 7',[idx],function(err,results,next){
             if(err) {
                 res.status(400).send({
                     "error" : err
