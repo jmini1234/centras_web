@@ -20,6 +20,9 @@
 - **Model** :
 <img width="800" height="500" src="https://user-images.githubusercontent.com/37237145/78688553-59c9a600-7930-11ea-897f-4631b2d0a798.PNG"/>
 
+- **FLOW CHART** : 
+<img width="800" height="580" src="https://user-images.githubusercontent.com/37237145/79559030-0c8fc600-80e0-11ea-96af-c19fabf6c819.png"/>
+
 #### BackEnd 
 
 - **사용 프레임 워크** : Node.js , Express Engine 
