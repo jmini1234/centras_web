@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 import {StyleSheet, Text, View} from 'react-native';
-import Router from '../Routes/Router';
-import Temp from './Temp';
-import Size from './Size';
-import Streaming from './Streaming';
-import Header from '../Layout/Header';
 import './My.css'
 
 class My extends Component{
@@ -40,20 +35,5 @@ class My extends Component{
         )
     }
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    submenu: {
-        flex: 1,
-    },
-    content: {
-        flex:1,
-    },
-
-});
 
 export default My;
