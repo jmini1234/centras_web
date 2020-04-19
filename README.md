@@ -17,6 +17,8 @@
 - **HardWare** : ESP32
 
 - **Model** :
+<img width="800" height="500" src="https://user-images.githubusercontent.com/37237145/79690553-ff1c3c80-8295-11ea-83c2-48e042da00cb.PNG">
+
 
 - **FLOW CHART** : 
 <img width="800" height="580" src="https://user-images.githubusercontent.com/37237145/79559030-0c8fc600-80e0-11ea-96af-c19fabf6c819.png"/>
