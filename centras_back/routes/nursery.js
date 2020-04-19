@@ -129,28 +129,6 @@ module.exports = (app) => {
     });
 
   /*
-    양식장 수온 조회
-  */
-    
-    router.get('/:idx/temperature',isLogin,function(req,res,next){
-        var idx = req.params.idx;
-        let user_idx = req.decoded.idx;
-        conn.query('SELECT * FROM temperature WHERE nursery_idx =?',[idx],function(err,results,next){
-            if(err) {
-                res.status(400).send({
-                    "error" : err
-                });
-            }
-            else{
-                res.status(200).send({
-                    "temperature" : results
-                });
-            }
-        });
-    });
-
-
-  /*
     양식장 물고기 사이즈 조회
   */
 
@@ -202,6 +180,7 @@ module.exports = (app) => {
             if(results.length<2){
                 let ip_info = {
                     'nursery_idx' : req.params.idx,
+                    'name' : req.body.name,
                     'ip' : req.body.ip
                }
                conn.query('INSERT INTO streaming SET ?',ip_info,function(err,results,next){
