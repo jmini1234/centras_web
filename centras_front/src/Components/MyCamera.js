@@ -8,6 +8,7 @@ class MyCamera extends Component {
         super(props);
         this.state = {
             camera_ip : "",
+            camera_name : "",
             nursery_list : [],
             nurseryIdx : -1
         };
@@ -35,7 +36,6 @@ class MyCamera extends Component {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        console.log(e.target.value);
         this.setState({nurseryIdx: e.target.value});
     }
 
@@ -44,11 +44,11 @@ class MyCamera extends Component {
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     };
-
     handleSubmit = e =>{
         e.preventDefault();
         const cameraInfo = {
-            'ip' : this.state.camera_ip
+            'ip' : this.state.camera_ip,
+            'name' : this.state.camera_name
         };
         const camera_info = {
             method: "POST",
@@ -86,8 +86,6 @@ class MyCamera extends Component {
 
 
     render(){
-        console.log(this.state.nurseryIdx);
-        console.log(this.state.camera_ip);
         return(
             <div>
                 <My />
@@ -104,6 +102,9 @@ class MyCamera extends Component {
                 <div className="camerainputForm" id="camera_ip"> 
                     <input type="text" class="form-control" placeholder="카메라 ip"
                      name = "camera_ip" onChange = {this.handleInput} value = {this.state.id}/>
+                    <input type="text" class="form-control" placeholder="카메라 이름"
+                     name = "camera_name" onChange = {this.handleInput} value = {this.state.id}/>
+
                 </div>
                 <button className = "submitbutton" onClick={this.handleSubmit} type="button" type="submit">등록하기</button>
                 </div>
