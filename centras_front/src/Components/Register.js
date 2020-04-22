@@ -31,6 +31,13 @@ class Register extends Component {
     const nurseryInfo = {
       'nursery_id' : this.state.nursery_id
     };
+    const str = this.state.nursery_id;
+    //var str = this.state.nursery_id.value;
+    var blank_pattern =  /^\s+|\s+$/g;
+    if(str.replace(blank_pattern,'') == ""){
+      alert("공백은 입력할 수 없습니다");
+      console.log("dd");
+    }
     console.log(localStorage.getItem("AUTHORIZATION"));
     const nursery_info = {
         method: "POST",
