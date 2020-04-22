@@ -17,9 +17,6 @@ class My extends Component{
             <div className = "myMain">
             <div className = "myHeader">내 양식장</div>
             <div>
-                <div className = "temp">
-                    <Link to='/my/mytemp' style={{ textDecoration: 'none' }}>수온</Link>        
-                </div>
                 <div className = "size">
                     <Link to='/my/size' style={{ textDecoration: 'none' }}>크기</Link>
                 </div>
