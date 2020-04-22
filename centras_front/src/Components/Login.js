@@ -52,17 +52,9 @@ class Login extends Component{
     }
 
     render() {
-        const style_header={  
-            //화면 겹침 때문에 값 바꿈          
-            margin : '5000px 0 0 300px',
-        }
         return (
         <div className="login-main">
         <div className="login-title">CENTRAS의 많은 서비스를 이용하려면 로그인 해주세요!</div>
-        <div style={style_header} className="Header_Logo">
-            <img src={fish} alt="centras_fish_pic"/>
-            <p>CENTRAS</p>
-        </div>
         <div className="login-form">
            <div class="inputForm" id="inputID" class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="아이디"
@@ -77,15 +69,6 @@ class Login extends Component{
             <div class="input-group-append"></div>
            </div>
            <button  onClick={this.handleSubmit} type="button" type="submit" class="btn btn-primary">로그인</button>
-            <div className="find">
-                <div className="find_id">
-                    아이디 찾기
-                </div>
-                <div className="find_pw">
-                    비밀번호 찾기
-                </div>
-            </div>
-            
             <div className="login-footer">아직 회원이 아니신가요? 
                 <div className="signup_link">
                     <Link to='/users/signup' style={{ textDecoration: 'none' }}>

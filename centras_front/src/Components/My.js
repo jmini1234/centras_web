@@ -35,19 +35,4 @@ class My extends Component{
     }
 }
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    submenu: {
-        flex: 1,
-    },
-    content: {
-        flex:1,
-    },
-
-});
-
 export default My;

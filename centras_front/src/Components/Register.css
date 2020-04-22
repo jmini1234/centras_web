@@ -1,7 +1,7 @@
 img.sub_bg {
     position: absolute;
     top: 0;
-    height: 600px;
+    height: 500px;
     width: 100%;
     z-index: -1;
   }
@@ -13,7 +13,7 @@ img.sub_bg {
     font-size: 26px;
     width: 500px;
     border-bottom: 2px solid #868e96;
-    margin-top: 150px;
+    margin-top: 140px;
 
   }
 
@@ -29,7 +29,8 @@ img.sub_bg {
   margin: 0;
   font-size: 20px;
   font-weight: normal;
-  margin-top: 20px;
+  margin-top: 30px;
+  color : gray;
 }
 
 .register-main div{
@@ -38,13 +39,42 @@ img.sub_bg {
 }
 
 .nursery-register{
-  width: 50%;
+  width: 45%;
   height: 100%;
   margin-left: 5%;
   border-right: 2px solid #868e96;
 }
 
 .my_nursery_list{
-  width: 50%;
-  margin-left: 5%;
+  margin-left: 25px;
+}
+
+.my_nursery_list_detail{
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.my_nursery_list_detail div{
+  font-size: 25px;
+  font-weight: normal;
+}
+
+@media (max-width: 1000px){
+  #inputNursery{
+    margin-top: 90px;
+    width: 350px;
+  }
+  .register-sub-title{
+    margin-right: 10px;
+  }
+
+  .form-control{
+    width: 300px !important;
+  }
+
+  .btn-primary{
+    left:150px !important;
+    top: 350px !important;
+  }
+
 }
