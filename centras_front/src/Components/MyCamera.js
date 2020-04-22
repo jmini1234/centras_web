@@ -50,37 +50,47 @@ class MyCamera extends Component {
             'ip' : this.state.camera_ip,
             'name' : this.state.camera_name
         };
-        const camera_info = {
-            method: "POST",
-            body: qs.stringify(cameraInfo),
-            headers: {
-                'x-access-token' : localStorage.getItem("AUTHORIZATION"),
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        };
-        console.log(camera_info.body);
-        var idx = this.state.nurseryIdx;
-        console.log(idx);
-        fetch("http://localhost:3001/nursery/" + idx + "/streaming", camera_info)
-        .then(response => { 
-        console.log(response);
-        response.json().then(
-            result => {
-                console.log(result);
+        const str = this.state.camera_ip;
+        const str2 = this.state.camera_name;
+        var blank_pattern =  /^\s+|\s+$/g;
+        if(str.replace(blank_pattern,'') == "" || str2.replace(blank_pattern,'') == ""){
+          alert("공백은 입력할 수 없습니다");
+        }
+        else{
+            const camera_info = {
+                method: "POST",
+                body: qs.stringify(cameraInfo),
+                headers: {
+                    'x-access-token' : localStorage.getItem("AUTHORIZATION"),
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            };
+            console.log(camera_info.body);
+            var idx = this.state.nurseryIdx;
+            console.log(idx);
+            fetch("http://localhost:3001/nursery/" + idx + "/streaming", camera_info)
+            .then(response => { 
+            console.log(response);
+            response.json().then(
+                result => {
+                    console.log(result);
+    
+                    if(response.status == 400){
+                        alert("등록 실패")
+                    }
+                    else{
+                        alert("등록 성공")
+                        window.location.reload();
+                    }
+                }
+            )
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        }
 
-                if(response.status == 400){
-                    alert("등록 실패")
-                }
-                else{
-                    alert("등록 성공")
-                    window.location.reload();
-                }
-            }
-        )
-        })
-        .catch(error => {
-            console.log(error.response)
-        });
+        
 
     }
 
