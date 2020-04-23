@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import My from './My';
 import './MyTemp.css';
-import {XYPlot, LineSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from "react-vis";
-
-
 
 class MyTemp extends Component {
     constructor(props){
@@ -34,7 +31,6 @@ class MyTemp extends Component {
                 console.log(result)
                 this.setState({temperature: result.temperature})
             });
-        
         });
     }
 
@@ -60,24 +56,23 @@ class MyTemp extends Component {
             <div className = "tempMain">
                 <My />
                 <div className = "tempPage">
-                <div className = "tempHeader">실시간 수온</div>
-                <div className = "selectMsg"> 양식장 선택</div>
-                <select className = "tempSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
-                {
-                    this.state.nursery_list.map((nursery)=>
-                    <option value = {nursery.idx}> {nursery.nursery_id} </option>
-                    )
-                }
-                </select>
-                <div className = "tempList">
-                {
-                    this.state.temperature.map((temper) =>
-                    <div> {temper.temp} {temper.update_time} </div>
-                    ) 
-                }  
+                    <div className = "tempHeader">실시간 수온</div>
+                    <div className = "selectMsg"> 양식장 선택</div>
+                    <select className = "tempSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
+                    {
+                        this.state.nursery_list.map((nursery)=>
+                        <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                        )
+                    }
+                    </select>
+                    <div className = "tempList">
+                    {
+                        this.state.temperature.map((temper) =>
+                            <div> {temper.temp} {temper.update_time} </div>
+                        ) 
+                    }  
+                    </div>
                 </div>
-                </div>
-                
             </div>
         )
     }
