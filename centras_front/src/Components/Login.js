@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import fish from '../img/fish.png'
 import './Login.css'
 import { Link } from 'react-router-dom';
 import qs from "qs";
-import Header from '../Layout/Header';
 class Login extends Component{
     
     constructor(props){
@@ -38,7 +36,7 @@ class Login extends Component{
         fetch("http://localhost:3001/users/login", login_info)
         .then(res => res.json())
         .then(result => {
-            if(result.code == 0){
+            if(result.code === 0){
                 console.log(result);
                 localStorage.setItem("AUTHORIZATION",result.token);
                 alert("로그인 성공");

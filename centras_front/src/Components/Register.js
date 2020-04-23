@@ -47,7 +47,7 @@ class Register extends Component {
       response.json().then(
           result => {
               console.log(result);
-              if(response.status == 400){
+              if(response.status === 400){
                   alert("등록 실패")
               }
               else{

@@ -21,8 +21,6 @@ class MyCamera extends Component {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        var first;
-
 
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())

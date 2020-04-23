@@ -1,23 +1,12 @@
+import './Size.css';
 import React, {Component} from 'react';
 import My from './My';
-import Header from '../Layout/Header';
-import NurseryList from './NuseryList';
-import './Size.css';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-    root: {
-        width: "100%"
-    },
-    table: {
-        width: "30%"
-    }
-})
 class Size extends Component {
     
     constructor(props) {

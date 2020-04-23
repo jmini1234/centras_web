@@ -68,44 +68,44 @@ class Signup extends Component{
             <div className="signup-form">
             <div className="signup-field">
                 <span className="signup-tag" >아이디</span>
-                <div class="inputForm" id="signup_inputID" class="input-group mb-3">
-                        <input type="text" class="form-control" 
+                <div className="inputForm" id="signup_inputID" className="input-group mb-3">
+                        <input type="text" className="form-control" 
                         name = "id" onChange = {this.handleChange}
                         value = {this.state.id} />
-                        <div class="input-group-append"></div>
+                        <div className="input-group-append"></div>
                 </div>
             </div>
 
             <div className="signup-field">
                 <span className="signup-tag">닉네임</span>
-                <div class="inputForm" id="signup_inputNickname" class="input-group mb-3">
-                        <input type="text" class="form-control"
+                <div className="inputForm" id="signup_inputNickname" className="input-group mb-3">
+                        <input type="text" className="form-control"
                         name = "nickname" onChange = {this.handleChange}
                         value = {this.state.nickname}/>
-                        <div class="input-group-append"></div>
+                        <div className="input-group-append"></div>
                 </div>
             </div>
             <div className="signup-field">
                 <span className="signup-tag">이메일</span>
-                <div class="inputForm" id="signup_inputEmail" class="input-group mb-3">
-                    <input type="text" class="form-control"
+                <div className="inputForm" id="signup_inputEmail" className="input-group mb-3">
+                    <input type="text" className="form-control"
                     name = "email" onChange = {this.handleChange}
                     value = {this.state.email}/>
-                    <div class="input-group-append"></div>
+                    <div className="input-group-append"></div>
                 </div>
             </div>
 
             <div className="signup-field">
                 <span className="signup-tag">비밀번호</span>
-                <div class="inputForm" id="signup_inputPW" class="input-group mb-3">
-                    <input type="password" class="form-control"
+                <div className="inputForm" id="signup_inputPW" className="input-group mb-3">
+                    <input type="password" className="form-control"
                     name = "pw" onChange = {this.handleChange}
                     value = {this.state.pw}/>
-                    <div class="input-group-append"></div>
+                    <div className="input-group-append"></div>
                 </div>
             </div>
             <button onClick={this.handleSubmit} type="button" 
-            type="submit" class="btn btn-primary" style={style_btn}>회원가입
+            type="submit" className="btn btn-primary" style={style_btn}>회원가입
             </button>
 
             </div>
