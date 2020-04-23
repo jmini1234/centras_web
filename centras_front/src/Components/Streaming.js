@@ -42,7 +42,6 @@ class Streaming extends Component{
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        console.log(e.target.value);
         this.setState({nurseryIdx: e.target.value});
 
         var Idx = e.target.value;
@@ -71,7 +70,7 @@ class Streaming extends Component{
                 <div className = "streamingList">
                 {
                     this.state.streaming.map((stream) =>
-                    <div> {stream.ip} </div>
+                    <div> {stream.ip} {stream.name}</div>
                     ) 
                 }  
                 </div>

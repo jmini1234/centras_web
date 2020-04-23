@@ -13,7 +13,9 @@ class Size extends Component {
         super(props);
         this.state = {
             nursery_list : [],
-            size : [] 
+            size : [],
+            check : false,
+            curIdx : -1
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -26,21 +28,32 @@ class Size extends Component {
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
-            this.setState({nursery_list: result.data})
-            console.log(result.data[0].idx);
-            first = result.data[0].idx;
-            fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
-            .then(res => res.json())
-            .then(result2 => {
-                console.log(result2)
-                this.setState({size: result2.size})
-            });
+            if(result.data.length==0){
+                alert("양식장 등록이 필요합니다")
+                window.location = '/';
+            }
+            else{
+                this.setState({check: true});
+                this.setState({nursery_list: result.data})
+                
+                console.log(result.data[0].idx);
+                first = result.data[0].idx;
+                this.setState({curIdx: first});
+                fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
+                .then(res => res.json())
+                .then(result2 => {
+                    console.log(result2)
+                    this.setState({size: result2.size})
+                });
+            }
+            
             }  
         );
+        
     }
-
+    
     handleChange(e){
-
+        this.setState({curIdx: e.target.value});
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
@@ -54,10 +67,52 @@ class Size extends Component {
             this.setState({size: result.size})
         });
     }
-    
+    getSizeList(){
+        const headers = {
+            "x-access-token": localStorage.getItem("AUTHORIZATION"),
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+        var idx = this.state.curIdx;
+        fetch("http://localhost:3001/nursery/" + idx + "/size", { headers })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result)
+            this.setState({size: result.size})
+        });
+    }
+    handleClick = e => {
+        e.preventDefault();
+        const info = {
+            method: "POST",
+            headers: {
+                "x-access-token": localStorage.getItem("AUTHORIZATION"),
+                "Content-Type" : "application/x-www-form-urlencoded"
+            }
+        };
+        var idx = this.state.curIdx;
+        console.log("idx = "+idx);
+        fetch("http://localhost:3001/esp/" + idx + "/size", info)
+        .then(response => { 
+            console.log(response);
+            response.json().then(
+                result => {
+                    console.log(result);
+                    if(response.status == 400){
+                        alert("측정 실패")
+                    }
+                    else{
+                        alert("측정 성공")
+                        this.getSizeList();
+                    }
+                }
+            )
+          })
+          .catch(error => {
+              console.log(error.response)
+          });
+    }
     render(){
         return(
-            
             <div>
                 <My />
                 <div className = "sizePage">
@@ -70,7 +125,6 @@ class Size extends Component {
                         )
                     }
                     </select>
-                    
                     <Table className = "sizeTable">
                         <TableHead>
                             <TableRow>
@@ -90,11 +144,17 @@ class Size extends Component {
                         }
                         </TableBody>
                     </Table>
-                    
+                    <button onClick={this.handleClick} style={{
+                        width :'100px',
+                        height: '60px',
+                        position: 'absolute',
+                        bottom: '200px',
+                        left: '750px',
+                        'border-radius': '5%',
+                        margin: '0'
+                    }} type="button" type="submit" class="btn btn-primary">측정시작</button>
                 </div>
-                
             </div>
-            
         );
     }
 
