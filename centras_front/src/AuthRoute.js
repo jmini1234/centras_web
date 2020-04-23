@@ -2,10 +2,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-
-const Auth = {
-    
-}
 function AuthRoute({ component: Component, render, ...rest }){
     var Login = false;
     if(localStorage.getItem("AUTHORIZATION")!=null){

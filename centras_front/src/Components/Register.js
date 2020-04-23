@@ -31,36 +31,44 @@ class Register extends Component {
     const nurseryInfo = {
       'nursery_id' : this.state.nursery_id
     };
-    console.log(localStorage.getItem("AUTHORIZATION"));
-    const nursery_info = {
+    const str = this.state.nursery_id;
+    var blank_pattern =  /^\s+|\s+$/g;
+    if(str.replace(blank_pattern,'') == ""){
+      alert("공백은 입력할 수 없습니다");
+      console.log("dd");
+    }
+    else{
+      const nursery_info = {
         method: "POST",
         body: qs.stringify(nurseryInfo),
         headers: {
             'x-access-token' : localStorage.getItem("AUTHORIZATION"),
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-    };
-    console.log(nursery_info.body);
-    fetch("http://localhost:3001/nursery", nursery_info)
-    .then(response => { 
-      console.log(response);
-      response.json().then(
-          result => {
-              console.log(result);
-              if(response.status == 400){
-                  alert("등록 실패")
-              }
-              else{
-                  alert("등록 성공")
-                  window.location.reload();
-              }
-          }
-      )
-    })
-    .catch(error => {
-        console.log(error.response)
-    });
+      };
+      console.log(nursery_info.body);
+      fetch("http://localhost:3001/nursery", nursery_info)
+      .then(response => { 
+        console.log(response);
+        response.json().then(
+            result => {
+                console.log(result);
+                if(response.status == 400){
+                    alert("등록 실패")
+                }
+                else{
+                    alert("등록 성공")
+                    window.location.reload();
+                }
+            }
+        )
+      })
+      .catch(error => {
+          console.log(error.response)
+      });
 
+    }
+    
   }
 
   render() {
