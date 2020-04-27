@@ -43,19 +43,14 @@ class Size extends Component {
                     this.setState({size: result2.size})
                 });
             }
-            
-            }  
-        );
-        
+        });
     }
-    
     handleChange(e){
         this.setState({curIdx: e.target.value});
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        console.log(e.target.value);
         var Idx = e.target.value;
         fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
         .then(res => res.json())

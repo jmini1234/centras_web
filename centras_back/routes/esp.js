@@ -9,7 +9,7 @@ module.exports = (app) => {
     require('moment-timezone');  
     moment.tz.setDefault("Asia/Seoul");
 
-    router.post('/',isLogin, function (req,res) {
+    router.post('/', function (req,res) {
         // ip 주소와 size 받음 
         let ip = req.body.ip;
         let size = req.body.size;
