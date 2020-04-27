@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import main1 from '../img/centras_main1.JPG'
 import './About.css'

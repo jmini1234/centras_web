@@ -14,23 +14,18 @@ class MyTemp extends Component {
     }
 
     componentWillMount(){
-        console.log("1111111");
         const headers = {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        var first;
-        console.log("22222");
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
-            console.log(result);
             this.setState({nursery_list: result.data})
-            first = result.data[0].idx;
+            var first = result.data[0].idx;
             fetch("http://localhost:3001/nursery/" + first + "/temperature", { headers })
             .then(res => res.json())
             .then(result => {
-                console.log(result)
                 this.setState({temperature: result.temperature})
             });
         });
@@ -41,19 +36,16 @@ class MyTemp extends Component {
             "x-access-token": localStorage.getItem("AUTHORIZATION"),
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-        console.log(e.target.value);
         this.setState({nurseryIdx: e.target.value});
         var Idx = e.target.value;
         fetch("http://localhost:3001/nursery/" + Idx + "/temperature", { headers })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             this.setState({temperature: result.temperature})
         });
     }
 
     render(){
-        console.log(this.state.temperature);
         return(
             <div className = "tempMain">
                 <My />

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import fish from '../img/fish.png'
 import './Signup.css'
 import qs from "qs"
+
 const style_p = {
     color:'black',
 }
@@ -13,7 +14,6 @@ const style_btn = {
     'margin-top': '50px',
     'border-radius': '5%'
 }
-
 
 class Signup extends Component{
 

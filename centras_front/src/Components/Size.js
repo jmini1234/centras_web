@@ -35,14 +35,11 @@ class Size extends Component {
             else{
                 this.setState({check: true});
                 this.setState({nursery_list: result.data})
-                
-                console.log(result.data[0].idx);
                 first = result.data[0].idx;
                 this.setState({curIdx: first});
                 fetch("http://localhost:3001/nursery/" + first + "/size", { headers })
                 .then(res => res.json())
                 .then(result2 => {
-                    console.log(result2)
                     this.setState({size: result2.size})
                 });
             }
@@ -63,7 +60,6 @@ class Size extends Component {
         fetch("http://localhost:3001/nursery/" + Idx + "/size", { headers })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             this.setState({size: result.size})
         });
     }
@@ -76,7 +72,6 @@ class Size extends Component {
         fetch("http://localhost:3001/nursery/" + idx + "/size", { headers })
         .then(res => res.json())
         .then(result => {
-            console.log(result)
             this.setState({size: result.size})
         });
     }
@@ -90,13 +85,10 @@ class Size extends Component {
             }
         };
         var idx = this.state.curIdx;
-        console.log("idx = "+idx);
         fetch("http://localhost:3001/esp/" + idx + "/size", info)
         .then(response => { 
-            console.log(response);
             response.json().then(
                 result => {
-                    console.log(result);
                     if(response.status == 400){
                         alert("측정 실패")
                     }
@@ -114,17 +106,26 @@ class Size extends Component {
     render(){
         return(
             <div>
-                <My />
+                <My/>
                 <div className = "sizePage">
+                    <div className="sizeHeaderList">
+                        <div className = "sizeHeader">양식장 선택</div> 
+                        <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
+                        {
+                            this.state.nursery_list.map((nursery)=>
+                            <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                            )
+                        }
+                        </select>
+                        <button onClick={this.handleClick} style={{
+                            position: 'absolute',
+                            left: '15%',
+                            bottom: '70%',
+                            'border-radius': '5%',
+                            width: '130px'
+                        }} type="button" type="submit" class="btn btn-primary">측정시작</button>
+                    </div>
 
-                    <div className = "sizeHeader">양식장 선택</div> 
-                    <select className = "sizeSelect" defaultValue={this.state.firstIdx} value={this.state.nurseryIdx} onChange={this.handleChange}>
-                    {
-                        this.state.nursery_list.map((nursery)=>
-                        <option value = {nursery.idx}> {nursery.nursery_id} </option>
-                        )
-                    }
-                    </select>
                     <Table className = "sizeTable">
                         <TableHead>
                             <TableRow>
@@ -144,15 +145,6 @@ class Size extends Component {
                         }
                         </TableBody>
                     </Table>
-                    <button onClick={this.handleClick} style={{
-                        width :'100px',
-                        height: '60px',
-                        position: 'absolute',
-                        bottom: '200px',
-                        left: '750px',
-                        'border-radius': '5%',
-                        margin: '0'
-                    }} type="button" type="submit" class="btn btn-primary">측정시작</button>
                 </div>
             </div>
         );

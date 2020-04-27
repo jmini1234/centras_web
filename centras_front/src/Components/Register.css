@@ -46,7 +46,7 @@ img.sub_bg {
 }
 
 .my_nursery_list{
-  margin-left: 25px;
+  margin-left: 75px;
 }
 
 .my_nursery_list_detail{
@@ -70,6 +70,9 @@ img.sub_bg {
 
   .form-control{
     width: 300px !important;
+  }
+  .my_nursery_list{
+    margin-left: 25px;
   }
 
   .btn-primary{
