@@ -25,7 +25,6 @@ class MyCamera extends Component {
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
-            console.log(result);
             this.setState({nursery_list: result.data})
             this.setState({nurseryIdx : result.data[0].idx})
         });
@@ -65,16 +64,11 @@ class MyCamera extends Component {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             };
-            console.log(camera_info.body);
             var idx = this.state.nurseryIdx;
-            console.log(idx);
             fetch("http://localhost:3001/nursery/" + idx + "/streaming", camera_info)
             .then(response => { 
-            console.log(response);
             response.json().then(
                 result => {
-                    console.log(result);
-    
                     if(response.status == 400){
                         alert("등록 실패")
                     }
@@ -89,12 +83,7 @@ class MyCamera extends Component {
                 console.log(error.response)
             });
         }
-
-        
-
     }
-
-
     render(){
         return(
             <div>
@@ -114,15 +103,12 @@ class MyCamera extends Component {
                      name = "camera_ip" onChange = {this.handleInput} value = {this.state.id}/>
                     <input type="text" class="form-control" placeholder="카메라 이름"
                      name = "camera_name" onChange = {this.handleInput} value = {this.state.id}/>
-
                 </div>
                 <button className = "submitbutton" onClick={this.handleSubmit} type="button" type="submit">등록하기</button>
                 </div>
             </div>
         )
     }
-
-
 }
 
 export default MyCamera;
