@@ -1,30 +1,47 @@
 .cameraPage{
+    top: 20%;
+    left: 20%;
     width: 70%;
-    margin-top :50px;
-    margin-left: 24%;
-    position: absolute;
+    position : absolute;
 }
-
-.cameraHeader{
-    font-size : 20px;
-    height : 1px;
-    margin-top :1px;
-    margin-bottom : 5%;
+.camerainputForm{
+    margin-top : 6%;
 }
 
 .cameraSelect{
-    width: 10%;
-    height: 25px;
-    margin-left: 12%;
-    margin-top: 0.5px;
+    width: 15%;
+    height: 50px;
     position: absolute;
+    left: 12%;
+    font-size: 20px;
+    font-weight: bold;
+    top: -10px;
 }
-
-.camerainputForm{
-    margin-top: 90px;
-    position: absolute;
-}
-
 .submitbutton{
-    margin-top: 25%;
+    
+}
+
+.selectMsg{
+    font-size : 23px;
+    font-weight: bold;
+}
+.camera-register{
+    width: 50%;
+}
+#inputCameraIp, #inputCameraName{
+    background: url("../img/edit-pencil@2x.png") no-repeat right 10px;
+    background-position-y: 30%;
+    font-family: SpoqaHanSans;
+    font-size: 26px;
+    width: 500px;
+    border-bottom: 2px solid #868e96;
+    margin-bottom: 20px;
+}
+.camera-form-control{
+    margin-bottom: 1vh;
+    font-size: 28px;
+    line-height: 180%;
+    opacity: 100%;
+    border: none !important;
+    width: 450px;
 }
