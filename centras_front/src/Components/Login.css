@@ -12,8 +12,6 @@
     margin-top: -500px;
     margin-left: -400px;
 }
-
-
 #inputID, #inputPW{	
     background: url("../img/edit-pencil@2x.png") no-repeat right 10px;
     background-position-y: 30%;
@@ -22,17 +20,12 @@
     width: 500px;
     border-bottom: 2px solid #868e96;
 }
-
 #inputPW{
     margin-top: 40px;
 }
-
-
 input:focus{
     outline: none;
 }
- 
-
 .form-control{
     margin-bottom: 1.4992503748126vh;
     font-size: 28px;
@@ -41,15 +34,11 @@ input:focus{
     border: none !important;
     width: 450px;
 }
-
-
-
 .find, .login-footer{
     color: #868e96;
     display: flex;
     font-size: 22px;
 }
-
 .login-footer{
     margin-top: 40px;
     margin-left: 65px;
@@ -64,7 +53,6 @@ input:focus{
     font-size: 36px;
     font-weight: bold;
 }
-
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: cornflowerblue !important;
     border-color: cornflowerblue !important;

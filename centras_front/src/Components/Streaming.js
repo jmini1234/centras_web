@@ -58,24 +58,24 @@ class Streaming extends Component{
             <div>
                 <My />
                 <div className = "streamingPage">
-                <div className = "streamingHeader">스트리밍</div>
-                <div className = "selectMsg"> 양식장 선택</div>
-                <select className = "cameraSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
-                {
-                    this.state.nursery_list.map((nursery)=>
-                    <option value = {nursery.idx}> {nursery.nursery_id} </option>
-                    )
-                }
-                </select>
-                <div className = "streamingList">
-                {
-                    this.state.streaming.map((stream) =>
-                    <div> {stream.ip} {stream.name}</div>
-                    ) 
-                }  
-                </div>
-                </div>
-                
+                    <div className = "streamingTopHeader">
+                        <div className = "streamingHeader">양식장 선택</div> 
+                        <select className = "cameraSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
+                        {
+                            this.state.nursery_list.map((nursery)=>
+                            <option value = {nursery.idx}> {nursery.nursery_id} </option>
+                            )
+                        }
+                        </select>
+                    </div>
+                    <div className = "streamingList">
+                    {
+                        this.state.streaming.map((stream) =>
+                        <div> {stream.ip} {stream.name}</div>
+                        ) 
+                    }  
+                    </div>
+                    </div>
             </div>
         );
     }

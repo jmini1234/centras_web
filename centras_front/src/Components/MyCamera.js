@@ -89,8 +89,7 @@ class MyCamera extends Component {
             <div>
                 <My />
                 <div className = "cameraPage">
-                <div className = "cameraHeader">카메라 추가</div>
-                <div className = "selectMsg"> 양식장 선택</div>
+                <div className = "selectMsg">양식장 선택</div>
                 <select className = "cameraSelect" value={this.state.nurseryIdx} onChange={this.handleChange}>
                 {
                     this.state.nursery_list.map((nursery)=>
@@ -99,12 +98,16 @@ class MyCamera extends Component {
                 }
                 </select>
                 <div className="camerainputForm" id="camera_ip"> 
-                    <input type="text" class="form-control" placeholder="카메라 ip"
-                     name = "camera_ip" onChange = {this.handleInput} value = {this.state.id}/>
-                    <input type="text" class="form-control" placeholder="카메라 이름"
-                     name = "camera_name" onChange = {this.handleInput} value = {this.state.id}/>
+                    <div class="inputForm" id="inputCameraIp" class="input-group mb-3">
+                        <input type="text" class="camera-form-control" placeholder="카메라 ip"
+                            name = "camera_ip" onChange = {this.handleInput} value = {this.state.id}/>
+                    </div>
+                    <div class="inputForm" id="inputCameraName" class="input-group mb-3">
+                        <input type="text" class="camera-form-control" placeholder="카메라 이름"
+                            name = "camera_name" onChange = {this.handleInput} value = {this.state.id}/>
+                    </div>
                 </div>
-                <button className = "submitbutton" onClick={this.handleSubmit} type="button" type="submit">등록하기</button>
+                <button className = "btn btn-primary" onClick={this.handleSubmit} type="button" type="submit">등록하기</button>
                 </div>
             </div>
         )
