@@ -5,10 +5,13 @@ img.sub_bg {
     width: 100%;
     z-index: -1;
   }
-
+.project_introduce{
+    width: 87%;
+}
 .project_title{
     font-weight: bold;
     font-size: 60px;
+    margin-top: 30px;
 }
 
 .project_content{
@@ -19,8 +22,26 @@ img.sub_bg {
     left: 5%;
 }
 
-.project_introduce div, .project_introduce_team div{
+.project_introduce div{
     margin: 0;
-    margin-top: 60px;
+    margin-top: 30px;
     font-size: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.project_introduce_title{
+    margin: 0;
+    font-size: 30px;
+    display: flex;
+}
+
+.project_introduce_title div{
+    margin-top : 5%;
+    margin-right: 5%;
+    margin-left: 40px;
+    font-size : 22px;
+    font-weight: bold;
+    border: 2px solid gray;
+    padding : 20px;
 }
