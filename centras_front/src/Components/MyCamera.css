@@ -42,3 +42,10 @@
     border: none !important;
     width: 450px;
 }
+
+@media (max-width: 1000px){
+    .cameraSelect{
+        width: 22%;
+        margin-left: 10%;
+    }
+}

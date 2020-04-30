@@ -12,11 +12,10 @@
 .sizeSelect{
     width: 15%;
     height: 50px;
-    position: absolute;
     left: 12%;
     font-size: 20px;
     font-weight: bold;
-    bottom: 70%;
+    position : relative;
 }
 
 .sizeTable{
@@ -26,4 +25,25 @@
 
 .MuiTableCell-alignCenter{
     font-size: 20px !important;
+}
+
+#size_start_btn{
+    border-radius: 5%;
+    width : 130px;
+    position: relative;
+    margin: 0;
+    margin-left: 180px;
+}
+
+@media (max-width: 1000px){
+    .sizeSelect{
+        width: 22%;
+        margin-left: 10%;
+        bottom: 8px;
+    }
+    #size_start_btn{
+        position: inherit;
+        margin: 0px 0px 0px 100px;
+        bottom: 8px;
+    }
 }
