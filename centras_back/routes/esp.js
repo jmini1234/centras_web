@@ -10,11 +10,12 @@ module.exports = (app) => {
     moment.tz.setDefault("Asia/Seoul");
 
     router.post('/', function (req,res) {
+        
         // ip 주소와 size 받음 
-        let ip = req.body.ip;
-        let size = req.body.size;
+        let ip = req.query.ip;
+        let size = req.query.size;
         // isEnd가 1이면 size 측정 end
-        let isEnd = req.body.isEnd;
+        let isEnd = req.query.isEnd;
 
         conn.query('SELECT * FROM streaming WHERE ip = ?',[ip],function (err,results) {
             if(results[0]){
