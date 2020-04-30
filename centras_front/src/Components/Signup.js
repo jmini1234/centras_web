@@ -69,16 +69,9 @@ class Signup extends Component{
     render() {
         return (
         <div className="signup-main">
-        <div className="header-top">
-            <div className="Header_Logo">
-                    <img src={fish} alt="centras_fish_pic"/>
-                    <p style={style_p}>CENTRAS</p>
-            </div>
-            <p id="signup_header_title"> 회원가입 </p>
-        </div>
-
             <div className="signup-form">
             <div className="signup-field">
+                <div className="signup-header-title">회원가입</div>
                 <span className="signup-tag" >아이디</span>
                 <div className="inputForm" id="signup_inputID" className="input-group mb-3">
                         <input type="text" className="form-control" 
