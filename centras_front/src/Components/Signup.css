@@ -22,6 +22,14 @@
     font-weight: bold;
 }
 
+.signup-header-title{
+    position: absolute;
+    top: -16%;
+    font-size: 44px;
+    left: 22%;
+    font-weight: bold;
+}
+
 #signup_inputID, #signup_inputPW, #signup_inputEmail, #signup_inputNickname {	
     background: url("../img/edit-pencil@2x.png") no-repeat right 10px;
     background-position-y: 30%;
