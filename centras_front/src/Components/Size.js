@@ -112,13 +112,7 @@ class Size extends Component {
                             )
                         }
                         </select>
-                        <button onClick={this.handleClick} style={{
-                            position: 'absolute',
-                            left: '15%',
-                            bottom: '70%',
-                            'border-radius': '5%',
-                            width: '130px'
-                        }} type="button" type="submit" class="btn btn-primary">측정시작</button>
+                        <button onClick={this.handleClick} id="size_start_btn" type="button" type="submit" class="btn btn-primary">측정시작</button>
                     </div>
 
                     <Table className = "sizeTable">
