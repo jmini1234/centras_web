@@ -108,6 +108,9 @@ class MyCamera extends Component {
                     </div>
                 </div>
                 <button className = "btn btn-primary" onClick={this.handleSubmit} type="button" type="submit">등록하기</button>
+                <div style={{'color': '#A4A4A4','margin-top': '3%'}}>
+                    ※   제공된 카메라에 적혀있는 IP 주소와 원하는 카메라 이름을 적어주세요   ※
+                </div>
                 </div>
             </div>
         )

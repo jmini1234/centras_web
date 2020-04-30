@@ -5,15 +5,17 @@
   }
   
   .main-content-title{
-    font-size: 66px;
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+    font-style: oblique;
   }
   
   .main-content-content{
     font-size: 24px;
-    width: 500px;
-    margin-left: 150px;
+    width: 600px;
+    margin-left: 110px;
+    text-align: center;
   }
   

@@ -12,10 +12,13 @@ const Home = () => {
         <img alt="main_bg" style={style_bg} src={main1} className="main_bg"></img>
         <div className="main-content"> 
           <div className="main-content-title">
-            Artificial Intelligence
+          “Future Smart Form of Fisheries”
           </div>
           <div className="main-content-content">
-            할지라도 창공에 반짝이는 뭇 별과 같이 산야에 피어나는 군영과 같이 이상은 실로 인간의 부패를 방지하는 소금이라 할지니 인생에 가치를 주는 원질이 되는 것이다 그들은 앞이 긴지라 착목한는 곳이 원대하고 그들은 피가 더운지라
+            <p>어떻게 하면 양식장 운영을 효율적으로 할 수 있을까?</p>
+            <p>어떻게 하면 불필요한 인력 고용을 막을 수 있을까?</p>
+            <p>어떻게 하면 우리 양식업을 발전시킬까?</p>
+            <p>고민하고 만들었습니다.</p>
           </div>
       </div>
       </div>
