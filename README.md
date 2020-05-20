@@ -23,6 +23,10 @@
 - **FLOW CHART** : 
 <img width="800" height="580" src="https://user-images.githubusercontent.com/37237145/79559030-0c8fc600-80e0-11ea-96af-c19fabf6c819.png"/>
 
+- **기술 stack 및 도식화** :
+<img width="800" height="500" src="https://user-images.githubusercontent.com/37237145/81133955-28271780-8f8e-11ea-9a2f-2785248c142c.png"/>
+
+
 #### BackEnd 
 
 - **사용 프레임 워크** : Node.js , Express Engine 
