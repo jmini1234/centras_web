@@ -77,29 +77,35 @@ module.exports = (app) => {
     let inputPassword = req.body.pw;
 
     conn.query('SELECT * FROM user WHERE id = ?',[id],function (err,results) {
-
         let user = results[0];
-        let dbPassword = user.pw;
-        let hashPassword = crypto.createHash("sha512").update(inputPassword + user.salt).digest("hex");
-
-        if(dbPassword == hashPassword){
-          var date = moment().format('YYYY-MM-DD HH:mm:ss');
-          conn.query('UPDATE user SET login_date=? WHERE id = ?',[date,user.id]);
-
-          //token 발행
-          let payload = {
-            idx : user.idx,
-            id : id,
-            salt : user.salt
-          };
-          let option = {expiresIn : '24h'};
-          token = jwt.sign(payload,jwtSecret,option);
-
-          // token 값 출력
-          res.status(200).send({'message':'로그인 성공','token':token, 'code': 0});
+        // 아이디 오류
+        if (user == undefined){
+          res.status(400).send({"message":'로그인 실패', 'code': 1});
         }
         else{
-          res.status(400).send({"message":'로그인 실패', 'code': 1});
+          let dbPassword = user.pw;
+          let hashPassword = crypto.createHash("sha512").update(inputPassword + user.salt).digest("hex");
+  
+          if(dbPassword == hashPassword){
+            var date = moment().format('YYYY-MM-DD HH:mm:ss');
+            conn.query('UPDATE user SET login_date=? WHERE id = ?',[date,user.id]);
+  
+            //token 발행
+            let payload = {
+              idx : user.idx,
+              id : id,
+              salt : user.salt
+            };
+            let option = {expiresIn : '24h'};
+            token = jwt.sign(payload,jwtSecret,option);
+  
+            // token 값 출력
+            res.status(200).send({'message':'로그인 성공','token':token, 'code': 0});
+          }
+          // 비밀번호 오류
+          else{
+            res.status(400).send({"message":'로그인 실패', 'code': 1});
+          }
         }
       });
   });

@@ -16,7 +16,6 @@ module.exports = (app) => {
         let size = req.query.size;
         // isEnd가 1이면 size 측정 end
         let isEnd = req.query.isEnd;
-
         conn.query('SELECT * FROM streaming WHERE ip = ?',[ip],function (err,results) {
             if(results[0]){
                 let nursery_idx = results[0].nursery_idx;
