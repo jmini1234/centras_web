@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import fish from '../img/fish.png'
 import './Signup.css'
 import qs from "qs"
-
-const style_p = {
-    color:'black',
-}
 
 const style_btn = {
     'margin-left': '260px',
@@ -53,7 +48,7 @@ class Signup extends Component{
         fetch("http://localhost:3001/users/sign_up", signup_info)
         .then(response => { 
             console.log(response.json())
-            if(response.status == 400){
+            if(response.status === 400){
                 alert("중복된 아이디입니다")
             }
             else{

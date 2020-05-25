@@ -34,7 +34,7 @@ class NurseryList extends Component{
         .then(response => { 
         response.json().then(
             result => {
-                if(response.status == 400){
+                if(response.status === 400){
                     alert("삭제 실패")
                 }
                 else{
@@ -68,7 +68,7 @@ class NurseryList extends Component{
                 this.state.nursery_list.map((nursery)=>
                     <div>
                         {nursery.nursery_id}
-                        <button type="submit" classname="nursery-delete-btn" style={style_delete_btn} onClick = {this.handleDelete} value = {nursery.idx}><img src={trash} style={style_delete_img}/></button>
+                        <button type="submit" classname="nursery-delete-btn" style={style_delete_btn} onClick = {this.handleDelete} value = {nursery.idx}><img alt="trash" src={trash} style={style_delete_img}/></button>
                     </div>
                 )
             )

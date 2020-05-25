@@ -31,10 +31,6 @@ class MyCamera extends Component {
     }
 
     handleChange(e){
-        const headers = {
-            "x-access-token": localStorage.getItem("AUTHORIZATION"),
-            "Content-Type" : "application/x-www-form-urlencoded"
-        }
         this.setState({nurseryIdx: e.target.value});
     }
 
@@ -52,7 +48,7 @@ class MyCamera extends Component {
         const str = this.state.camera_ip;
         const str2 = this.state.camera_name;
         var blank_pattern =  /^\s+|\s+$/g;
-        if(str.replace(blank_pattern,'') == "" || str2.replace(blank_pattern,'') == ""){
+        if(str.replace(blank_pattern,'') === "" || str2.replace(blank_pattern,'') === ""){
           alert("공백은 입력할 수 없습니다");
         }
         else{
@@ -69,7 +65,7 @@ class MyCamera extends Component {
             .then(response => { 
             response.json().then(
                 result => {
-                    if(response.status == 400){
+                    if(response.status === 400){
                         alert("등록 실패")
                     }
                     else{

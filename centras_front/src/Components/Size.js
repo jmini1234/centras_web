@@ -28,7 +28,7 @@ class Size extends Component {
         fetch("http://localhost:3001/nursery/list" , { headers })
         .then(res => res.json())
         .then(result => {
-            if(result.data.length==0){
+            if(result.data.length===0){
                 alert("양식장 등록이 필요합니다")
                 window.location = '/';
             }
@@ -84,7 +84,7 @@ class Size extends Component {
         .then(response => { 
             response.json().then(
                 result => {
-                    if(response.status == 400){
+                    if(response.status === 400){
                         alert("측정 실패")
                     }
                     else{

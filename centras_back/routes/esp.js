@@ -17,7 +17,6 @@ module.exports = (app) => {
         // isEnd가 1이면 size 측정 end
         let isEnd = req.query.isEnd;
         conn.query('SELECT * FROM streaming WHERE ip = ?',[ip],function (err,results) {
-            if(results[0]){
                 let nursery_idx = results[0].nursery_idx;
                 var date = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -75,8 +74,9 @@ module.exports = (app) => {
                         }
                     })
                 }
-            }
-            else {
+
+            if(err) {
+                console.log(err);
                 res.status(400).send({
                     "message": "유효한 카메라가 아닙니다."
                 }); 

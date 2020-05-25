@@ -33,7 +33,7 @@ class Register extends Component {
     };
     const str = this.state.nursery_id;
     var blank_pattern =  /^\s+|\s+$/g;
-    if(str.replace(blank_pattern,'') == ""){
+    if(str.replace(blank_pattern,'') === ""){
       alert("공백은 입력할 수 없습니다");
       console.log("dd");
     }

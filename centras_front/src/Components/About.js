@@ -59,28 +59,28 @@ class About extends Component {
             <div className="project_introduce_title">
               <p style={{"font-weight" : "bold"}}>＃ 팀 소개</p>
               <div>
-              <img src={sy} width="200px" height="250px"></img>
+              <img alt="sy" src={sy} width="200px" height="250px"></img>
                 <p>1615018 박소연</p>
                 <p style={{'width':'200px','font-size':'14px'}}>역할: 웹페이지 서버 구축,  DB 설계, HTML 및 CSS 디자인</p>
                 <p style={{'width':'200px','font-size':'14px'}}>Email: sypark9646@gmail.com </p>
                 <p style={{'width':'200px','font-size':'14px'}}>Github: https://github.com/sypark9646 </p>
               </div>
               <div>
-                <img src={jy} width="200px" height="250px"></img>
+                <img alt="jy" src={jy} width="200px" height="250px"></img>
                 <p>1771023 박지연</p>
                 <p style={{'width':'200px','font-size':'14px'}}>역할: </p>
                 <p style={{'width':'200px','font-size':'14px'}}>Email: bgy1060@naver.com </p>
                 <p style={{'width':'200px','font-size':'14px'}}>Github: https://github.com/bgy1060 </p> 
               </div>
               <div>
-                <img src={jm} width="200px" height="250px"></img>
+                <img alt="jm" src={jm} width="200px" height="250px"></img>
                 <p>1771033 심정민</p> 
                 <p style={{'width':'200px','font-size':'14px'}}>역할: 웹페이지 서버 구축,  DB 설계, HTML 및 CSS 디자인</p>
                 <p style={{'width':'200px','font-size':'14px'}}>Email: shjj09@naver.com </p>
                 <p style={{'width':'200px','font-size':'14px'}}>Github: https://github.com/jmini1234 </p>
               </div>
               <div>
-              <img src={yw} width="200px" height="250px"></img>
+              <img alt="yw" src={yw} width="200px" height="250px"></img>
                 <p>1615065 정연우</p>
                 <p style={{'width':'200px','font-size':'14px'}}>역할: Front-End와 API 연동</p>
                 <p style={{'width':'200px','font-size':'14px'}}>Email: lucia526@naver.com </p>
