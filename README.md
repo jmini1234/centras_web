@@ -67,3 +67,40 @@ module.exports = dbConfig;
 
 
 
+#### 화면 소개
+
+[메인 화면] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961674-6175de80-a8d0-11ea-9248-65174b78b98a.png"/>
+
+[프로젝트 소개] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961704-bade0d80-a8d0-11ea-9e21-a496f3af4a1f.png"/>
+
+[로그인] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961718-ce897400-a8d0-11ea-91a3-06431c80c04b.png"/>
+
+[회원가입] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961718-ce897400-a8d0-11ea-91a3-06431c80c04b.png"/>
+
+[양식장 등록] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961728-e06b1700-a8d0-11ea-94ed-0c14df1efd01.png"/>
+
+[카메라 등록] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961726-dea15380-a8d0-11ea-9b00-fd746aa9489a.png"/>
+
+[스트리밍] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961728-e06b1700-a8d0-11ea-94ed-0c14df1efd01.png"/>
+
+[스트리밍 화면] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961748-0e505b80-a8d1-11ea-9d35-e8daf7d3b0f8.png"/>
+
+[물고기 크기 측정] 
+<br>
+<img width="500" height="300" src="https://user-images.githubusercontent.com/37237145/83961729-e234da80-a8d0-11ea-945e-c7672541d354.png"/>
