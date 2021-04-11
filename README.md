@@ -9,6 +9,13 @@
 - 지도 교수 : 조동섭 교수님
 - 팀원 : 박소연, 박지연, 심정민, 정연우 
 
+#### [프로젝트 결과]
+- 이화여자대학교 캡스톤 경진대회 **장려상**
+- 2020 SW 인재 페스티벌 **최우수상(정보통신기획평가원장상)** </br></br>
+[링크]</br>
+공모전 링크 : https://swhrfestival.kr/swuniv/cate04/page01_view.do</br>
+영상 링크 : https://www.youtube.com/watch?v=2qtgapoS8AM</br>
+
 
 #### [기술 소개]
 
